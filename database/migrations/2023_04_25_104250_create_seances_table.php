@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
+            $table->text("description");
+            $table->date("date");
+            $table->string("type");
+            $table->foreignId("idProf");
+            $table->foreign("idProf")->references("id")->on("profs")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("idModule");
+            $table->foreign("idModule")->references("id")->on("modules")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("idGroupe");
+            $table->foreign("idGroupe")->references("id")->on("groupes")->onDelete("cascade")->onUpdate("cascade");
+
             $table->timestamps();
         });
     }
