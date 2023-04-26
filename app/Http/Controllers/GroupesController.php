@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Groupes;
@@ -15,7 +16,7 @@ class GroupesController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('groupes.index', compact('groupes'));
+        return view('blades.groupes.index', compact('groupes'));
     }
 
     /**
@@ -34,15 +35,10 @@ class GroupesController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
-            'libelle' => 'required',
-            'idFiliere' => 'required|exists:filiere,id'
-        ]);
-
-        Groupes::create($validatedData);
+        Groupes::create($request->post());
 
         return redirect()->route('groupes.index')->with('success', 'Groupe created successfully!');
-   
+
     }
 
     /**
@@ -62,8 +58,9 @@ class GroupesController extends Controller
     public function edit(string $id)
     {
         //
+        $filieres = Filiere::all();
         $groupes= Groupes::findOrFail($id);
-        return view('groupes.edit' , ['groupes'=>$groupes]);
+        return view('groupes.edit' , ['groupes'=>$groupes , 'filieres'=>$filieres]);
     }
 
     /**
@@ -75,13 +72,13 @@ class GroupesController extends Controller
         $groupes= Groupes::findOrFail($id);
         $validatedData = $request->validate([
             'libelle' => 'required',
-            'idFiliere' => 'required|exists:filiere,id'
+            'idFiliere' => 'required|exists:filieres,id'
         ]);
 
         $groupes->update($validatedData);
 
         return redirect()->route('groupes.index')->with('success', 'Groupe updated successfully!');
-   
+
     }
 
     /**
@@ -94,6 +91,6 @@ class GroupesController extends Controller
         $groupes->delete();
 
         return redirect()->route('groupes.index')->with('success', 'Groupe deleted successfully!');
- 
+
     }
 }

@@ -2,22 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Exam;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Exam>
- */
 class ExamFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Exam::class;
+
+    public function definition()
     {
         return [
-            //
+            'date' => $this->faker->date(),
+            'type' => $this->faker->randomElement(['controle 1', 'controle 2 ', 'EFM']),
+            'idModule' => $this->faker->numberBetween(1, 5),
+            'libelle' => $this->faker->word(),
         ];
     }
 }

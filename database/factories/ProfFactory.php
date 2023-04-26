@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Prof;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Prof>
- */
 class ProfFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Prof::class;
+
+    public function definition()
     {
         return [
-            //
+            'nom' => $this->faker->lastName,
+            'prenom' => $this->faker->firstName
         ];
     }
 }

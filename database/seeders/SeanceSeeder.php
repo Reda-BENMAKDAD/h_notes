@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Seance;
+
 
 class SeanceSeeder extends Seeder
 {
@@ -13,5 +15,6 @@ class SeanceSeeder extends Seeder
     public function run(): void
     {
         //
+        Seance::factory(20)->create();
     }
 }

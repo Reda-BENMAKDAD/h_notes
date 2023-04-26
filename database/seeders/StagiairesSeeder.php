@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Stagieres;
 
-class FilliereSeeder extends Seeder
+
+class StagiaireSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,5 +15,7 @@ class FilliereSeeder extends Seeder
     public function run(): void
     {
         //
+        Stagieres::factory(10)->create();
+
     }
 }
