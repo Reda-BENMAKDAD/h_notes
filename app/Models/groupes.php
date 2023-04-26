@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class groupes extends Model
+class Groupes extends Model
 {
     use HasFactory;
     protected $fillable = ['libelle', 'idFiliere'];
@@ -13,6 +13,6 @@ class groupes extends Model
 
     public function filiere()
     {
-        return $this->belongsTo(filiere::class, 'idFiliere');
+        return $this->belongsTo(Filiere::class, 'idFiliere');
     }
 }

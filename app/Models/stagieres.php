@@ -12,6 +12,6 @@ class stagieres extends Model
 
     public function groupes()
     {
-        return $this->belongsTo(groupes::class, 'idgroupe');
+        return $this->belongsTo(Groupes::class, 'idgroupe');
     }
 }
