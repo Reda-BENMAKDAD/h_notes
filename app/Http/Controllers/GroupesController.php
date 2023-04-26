@@ -16,7 +16,7 @@ class GroupesController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('groupes.index', compact('groupes'));
+        return view('blades.groupes.index', compact('groupes'));
     }
 
     /**
@@ -38,7 +38,7 @@ class GroupesController extends Controller
         Groupes::create($request->post());
 
         return redirect()->route('groupes.index')->with('success', 'Groupe created successfully!');
-   
+
     }
 
     /**
@@ -78,7 +78,7 @@ class GroupesController extends Controller
         $groupes->update($validatedData);
 
         return redirect()->route('groupes.index')->with('success', 'Groupe updated successfully!');
-   
+
     }
 
     /**
@@ -91,6 +91,6 @@ class GroupesController extends Controller
         $groupes->delete();
 
         return redirect()->route('groupes.index')->with('success', 'Groupe deleted successfully!');
- 
+
     }
 }

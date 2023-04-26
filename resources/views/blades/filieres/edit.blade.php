@@ -15,13 +15,13 @@
                         @method('put')
                         <div class="">
                                 <label for="nom " class="block mb-3">Nom</label>
-                                <input type="text" name="nom" value="{{$filier->nom}}" class="px-3 py-1 bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
+                                <input type="text" name="nom" value="{{$filier->nom}}" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
                                 @error('nom')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="flex justify-center">
-                            <button type="submit" class="btn btn-primary mt-6 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
+                            <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
                         </div>
                     </form>
 

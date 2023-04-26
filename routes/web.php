@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FiliereController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GroupesController;
 
 /*
 |--------------------------------------------------------------------------
