@@ -27,7 +27,7 @@ class Seance extends Model
     }
 
     public function groupe() {
-        return $this->belongsTo(Groupe::class);
+        return $this->belongsTo(Groupes::class);
     }
 
     use HasFactory;
