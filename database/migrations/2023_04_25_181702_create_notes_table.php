@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->id('idnote');
+            $table->id();
             $table->integer('valeur');
             $table->foreignId('idexam');
             $table->foreignId('idstagiere');
 
-            $table->foreign('idexam')->references('idexam')->on('exam')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idstagiere')->references('idstagiere')->on('stagieres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idexam')->references('id')->on('exam')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idstagiere')->references('id')->on('stagieres')->onDelete('cascade')->onUpdate('cascade');
 
 
             $table->timestamps();

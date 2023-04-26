@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('groupes', function (Blueprint $table) {
-            $table->id('idgroupe');
+            $table->id();
             $table->string('libelle');
             $table->foreignId('idFiliere');
-            $table->foreign('idFiliere')->references('idFiliere')->on('filieres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idFiliere')->references('id')->on('filieres')->onDelete('cascade')->onUpdate('cascade');
 
 
             $table->timestamps();

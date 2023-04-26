@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class notes extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idnote';
     protected $fillable = ['valeur', 'idstagiere','idexam'];
 
     public function stagieres()

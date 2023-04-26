@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class groupes extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idgroupe';
     protected $fillable = ['libelle', 'idFiliere'];
     public $timestamps = false;
 
