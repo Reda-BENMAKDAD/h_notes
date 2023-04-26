@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FiliereController;
+use App\Http\Controllers\ModulesController;
+use App\Http\Controllers\ProfController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +27,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::resource('/filiers',  FiliersController::class)->middleware(['auth', 'verified'])->name('filiers');
-Route::resource('/modules',  ModulesController::class)->middleware(['auth', 'verified'])->name('modules');
-Route::resource('/profs',  ProfController::class)->middleware(['auth', 'verified'])->name('profs');
-Route::resource('/profs',  ProfController::class)->middleware(['auth', 'verified'])->name('profs');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('/filiers', FiliereController::class )->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -13,7 +13,7 @@ class FiliereController extends Controller
     public function index()
     {
         $filieres = Filiere::all();
-        return view('filieres.index', ['filieres'=>$filieres]);
+        return view('blades.filiere.index', ['filieres'=>$filieres]);
     }
 
     /**
@@ -29,13 +29,13 @@ class FiliereController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $nom=$request->input('nom');
-       
+
           $validation=Validator::make($request->all(),
           [
             'nom'=>'required|max:200',
-            
+
           ],
           [
            'nom.required'=>'Erreur le libelle est obligatoires' ,
@@ -60,7 +60,7 @@ class FiliereController extends Controller
         return view('filiers.show',['filier'=>$filier]);
     }
 
-   
+
     public function edit(string $id)
     {
         $filier=Filiere::findorFail($id);
@@ -76,7 +76,7 @@ class FiliereController extends Controller
         // [
         //     'libelle'=>'required|max:25',
         //     'infos'=>'required'
-        
+
         // ],
         // [
         //     'libelle.required'=>'le libelle est obligatoire',

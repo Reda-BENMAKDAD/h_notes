@@ -17,26 +17,13 @@
                     </x-nav-link>
                 </div>
 
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('filiers')" :active="request()->routeIs('Filiers')">
+                    <x-nav-link :href="route('filiers.index')" :active="request()->routeIs('filiers.*')">
                         {{ __('Filiers') }}
                     </x-nav-link>
                 </div>
 
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('modules')" :active="request()->routeIs('Modules')">
-                        {{ __('Modules') }}
-                    </x-nav-link>
-                </div>
-
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profs')" :active="request()->routeIs('Profs')">
-                        {{ __('Profs') }}
-                    </x-nav-link>
-                </div>
             </div>
 
             <!-- Settings Dropdown -->
