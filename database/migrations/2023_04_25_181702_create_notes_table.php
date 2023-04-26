@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('idexam');
             $table->foreignId('idstagiere');
 
-            $table->foreign('idexam')->references('id')->on('exam')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idexam')->references('id')->on('exams')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idstagiere')->references('id')->on('stagieres')->onDelete('cascade')->onUpdate('cascade');
 
 
