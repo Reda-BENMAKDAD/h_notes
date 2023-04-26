@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Groupes;
@@ -17,7 +18,7 @@ class StagieresController extends Controller
     {
         //
         $stagieres = Stagieres::all();
-        return view('stagieres.index' , ['stagiere'=>$stagiere]);
+        return view('stagieres.index' , ['stagieres'=>$stagieres]);
     }
 
     /**
