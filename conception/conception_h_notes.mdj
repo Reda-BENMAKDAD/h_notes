@@ -1108,23 +1108,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGHuBcbtCOPubU=",
-											"_parent": {
-												"$ref": "AAAAAAGHuBbrpyNjroE="
-											},
-											"model": {
-												"$ref": "AAAAAAGHuBcbriOMVSY="
-											},
-											"font": "Arial;13;0",
-											"left": 645,
-											"top": 477,
-											"width": 70.458984375,
-											"height": 13,
-											"text": "+nom",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGHuBcmeSOWXC0=",
 											"_parent": {
 												"$ref": "AAAAAAGHuBbrpyNjroE="
@@ -1134,7 +1117,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 492,
+											"top": 477,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+description",
@@ -1151,7 +1134,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 507,
+											"top": 492,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+date",
@@ -1168,7 +1151,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 522,
+											"top": 507,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+type",
@@ -1185,7 +1168,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 537,
+											"top": 522,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+idProf",
@@ -1202,7 +1185,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 552,
+											"top": 537,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+idModule",
@@ -1219,7 +1202,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 645,
-											"top": 567,
+											"top": 552,
 											"width": 70.458984375,
 											"height": 13,
 											"text": "+idGroupe",
@@ -1230,7 +1213,7 @@
 									"left": 640,
 									"top": 457,
 									"width": 80.458984375,
-									"height": 128
+									"height": 113
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1243,7 +1226,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 640,
-									"top": 585,
+									"top": 570,
 									"width": 80.458984375,
 									"height": 10
 								},
@@ -5640,14 +5623,6 @@
 								"$ref": "AAAAAAGHuBbrpiNbbrE="
 							},
 							"name": "id"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGHuBcbriOMVSY=",
-							"_parent": {
-								"$ref": "AAAAAAGHuBbrpiNbbrE="
-							},
-							"name": "nom"
 						},
 						{
 							"_type": "UMLAttribute",
