@@ -17,7 +17,7 @@ class Exam extends Model
 
     public function module()
     {
-        return $this->belongsTo(module::class, 'idModule');
+        return $this->belongsTo(Module::class, 'idModule');
     }
     use HasFactory;
 }
