@@ -19,6 +19,6 @@ class Filiere extends Model
     }
 
     public function groupe() {
-        return this->hasMany(Groupe::class);
+        return this->hasMany(Groupes::class);
     }
 }
