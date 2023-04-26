@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class prof extends Model
+class Prof extends Model
 {
     protected $table = 'profs';
     protected $fillable = [
@@ -13,5 +13,12 @@ class prof extends Model
         'nom',
         'prenom',
     ];
+
+    public function modules(){
+        return $this->hasMany(Module::class);
+    }
+    public function seances(){
+        return $this->hasMany(Seance::class);
+    }
     use HasFactory;
 }

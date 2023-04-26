@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->date("date");
+            $table->string("type");
+            $table->foreignId("idModule");
+            $table->foreign("idModule")->references("id")->on("modules")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("libelle");
             $table->timestamps();
         });
     }

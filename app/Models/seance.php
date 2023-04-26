@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class seance extends Model
+class Seance extends Model
 {
     protected $table = 'seances';
     protected $fillable = [
@@ -19,15 +19,15 @@ class seance extends Model
 
     ];
     public function prof() {
-        return $this->belongsTo(prof::class);
+        return $this->belongsTo(Prof::class);
     }
 
     public function module() {
-        return $this->belongsTo(module::class);
+        return $this->belongsTo(Module::class);
     }
 
     public function groupe() {
-        return $this->belongsTo(groupe::class);
+        return $this->belongsTo(Groupe::class);
     }
 
     use HasFactory;

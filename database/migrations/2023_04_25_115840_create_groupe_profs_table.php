@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('groupe_profs', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->integer('masseHorraire');
-            $table->timestamps();
-            $table->foreignId('idFilliere');
             $table->foreignId('idProf');
-
-            $table->foreign('idFilliere')->references('id')->on('filieres')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idProf')->references('id')->on('profs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('idGroupe');
+            $table->foreign('idGroupe')->references('id')->on('groupes')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('groupe_profs');
     }
 };

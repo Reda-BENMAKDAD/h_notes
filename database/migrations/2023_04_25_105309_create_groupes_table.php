@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profs', function (Blueprint $table) {
+        Schema::create('groupes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('prenom');
+            $table->string('libelle');
+            $table->foreignId('idFiliere');
+            $table->foreign('idFiliere')->references('id')->on('filieres')->onDelete('cascade')->onUpdate('cascade');
+
+
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('profs');
+        Schema::dropIfExists('groupes');
     }
 };

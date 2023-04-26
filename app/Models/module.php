@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class module extends Model
 {
     use HasFactory;
-    protected $table = 'module';
+    protected $table = 'modules';
     protected $primaryKey = 'id';
     protected $fillable = [
         'idFilliere',
@@ -18,10 +18,10 @@ class module extends Model
     ];
 
     function filliere() {
-        return this->belongsTo(filliere::class, 'idFilliere');
+        return this->belongsTo(filiere::class, 'idFilliere');
     }
 
     function profs() {
-        return this->belongsTo(profs::class, 'idProfs');
+        return this->belongsTo(prof::class, 'idProfs');
     }
 }
