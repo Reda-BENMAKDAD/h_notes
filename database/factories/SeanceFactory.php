@@ -2,22 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Seance;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Seance>
- */
 class SeanceFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Seance::class;
+
+    public function definition()
     {
         return [
-            //
-        ];
+            'idModule' => \App\Models\Module::inRandomOrder()->first()->id,
+            'idProf' => \App\Models\Prof::inRandomOrder()->first()->id,
+            'date' => $this->faker->dateTime(),
+            'salle' => $this->faker->word(),        ];
     }
 }
+

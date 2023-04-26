@@ -2,22 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Notes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class NoteFactory extends Factory
+class NotesFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Notes::class;
+
+    public function definition()
     {
         return [
-            //
+            'valeur' => $this->faker->numberBetween(0, 20),
+            'idstagiere' => \App\Models\Stagieres::inRandomOrder()->first()->id,
+            'idexam' => \App\Models\Exam::inRandomOrder()->first()->id,
         ];
     }
 }

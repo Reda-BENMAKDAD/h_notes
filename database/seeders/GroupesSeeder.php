@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\GroupeProf;
+use App\Models\Groupes;
 
-class GroupeProfSeeder extends Seeder
+class GroupesSeeder extends Seeder
 {
     public function run()
     {
-        GroupeProf::factory(10)->create();
+        Groupes::factory(10)->create();
     }
 }

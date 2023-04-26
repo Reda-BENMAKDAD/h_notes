@@ -1,23 +1,22 @@
 <?php
 
+
 namespace Database\Factories;
 
+use App\Models\Stagieres;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class StagiaireFactory extends Factory
+class StagieresFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Stagieres::class;
+
+    public function definition()
     {
         return [
-            //
+            'nom' => $this->faker->firstName,
+            'prenom' => $this->faker->lastName,
+            'idgroupe' => \App\Models\Groupes::inRandomOrder()->first()->id,
         ];
     }
 }
+

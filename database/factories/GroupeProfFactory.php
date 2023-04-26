@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\GroupeProf;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GroupeProf>
- */
 class GroupeProfFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = GroupeProf::class;
+
+    public function definition()
     {
         return [
-            //
+            'idProf' => $this->faker->numberBetween(1, 10),
+            'idGroupe' => $this->faker->numberBetween(1, 20)
         ];
     }
 }

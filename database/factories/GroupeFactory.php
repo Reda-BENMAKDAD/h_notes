@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Groupes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class GroupeFactory extends Factory
+class GroupesFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Groupes::class;
+
+    public function definition()
     {
         return [
-            //
+            'libelle' => $this->faker->word(),
+            'idFiliere' => rand(1,5)
         ];
     }
 }
