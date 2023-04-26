@@ -38,8 +38,8 @@ class FiliereController extends Controller
             
           ],
           [
-           'nom.required'=>'Erreur le libelle est obligatoires' ,
-           'nom.max'=>'Erreur le libelle ne doit pas dépassé 200 caractères',
+           'nom.required'=>'Erreur le nom est obligatoires' ,
+           'nom.max'=>'Erreur le nom ne doit pas dépassé 200 caractères',
           ]);
 
           if($validation->fails()){
@@ -57,14 +57,14 @@ class FiliereController extends Controller
     public function show(string $id)
     {
         $filier=Filiere::findorFail($id);
-        return view('filiers.show',['filier'=>$filier]);
+        return view('filieres.show',['filier'=>$filier]);
     }
 
    
     public function edit(string $id)
     {
         $filier=Filiere::findorFail($id);
-        return view('filiers.edit',['filier'=>$filier]);
+        return view('filieres.edit',['filier'=>$filier]);
     }
 
     /**
@@ -72,26 +72,26 @@ class FiliereController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $validation=Validator::make($request->all(),
-        // [
-        //     'libelle'=>'required|max:25',
-        //     'infos'=>'required'
+        $validation=Validator::make($request->all(),
+        [
+            'nom'=>'required|max:250',
+            
         
-        // ],
-        // [
-        //     'libelle.required'=>'le libelle est obligatoire',
-        //     'libelle.max'=>'le libelle ne doit pas dépassé 25 caractères',
-        //     'infos.required'=>'les infos est obligatoire'
+        ],
+        [
+            'nom.required'=>'le nom est obligatoire',
+            'nom.max'=>'le nom ne doit pas dépassé 250 caractères',
+            
 
-        // ]
-        // );
+        ]
+        );
 
-        // if($validation->fails()){
-        //     return back()->withErrors($validation->errors())->withInput();
-        //    }
+        if($validation->fails()){
+            return back()->withErrors($validation->errors())->withInput();
+           }
 
            $filier=Filiere::findorFail($id);
-           $filier->nom=$request->input('libelle');
+           $filier->nom=$request->input('nom');
            $filier->save();
            return redirect()->route('filiers.index')->with('message','la filiere est bien modifié');
     }
@@ -103,6 +103,6 @@ class FiliereController extends Controller
     {
         $filier=Filiere::findorFail($id);
         $filier->delete();
-        return redirect()->route('filiers.index')->with('message','la filiere a bien été suppprimée');
+        return redirect()->route('filieres.index')->with('message','la filiere a bien été suppprimée');
     }
 }

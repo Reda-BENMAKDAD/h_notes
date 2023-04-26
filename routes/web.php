@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FiliereController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\StagieresController;
@@ -33,5 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('stagieres',StagieresController::class);
 
 });
+
+Route::resource('filiers', FiliereController::class);
 
 require __DIR__.'/auth.php';
