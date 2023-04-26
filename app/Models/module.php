@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class module extends Model
+class Module extends Model
 {
     use HasFactory;
     protected $table = 'modules';
@@ -18,10 +18,10 @@ class module extends Model
     ];
 
     function filliere() {
-        return this->belongsTo(filiere::class, 'idFilliere');
+        return this->belongsTo(Filiere::class, 'idFilliere');
     }
 
     function profs() {
-        return this->belongsTo(prof::class, 'idProfs');
+        return this->belongsTo(Prof::class, 'idProfs');
     }
 }

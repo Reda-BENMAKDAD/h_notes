@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class filiere extends Model
+class Filiere extends Model
 {
     use HasFactory;
     protected $table = 'filliere';
@@ -15,10 +15,10 @@ class filiere extends Model
     ];
 
     public function module() {
-        return this->hasMany(module::class);
+        return this->hasMany(Module::class);
     }
 
     public function groupe() {
-        return this->hasMany(groupe::class);
+        return this->hasMany(Groupe::class);
     }
 }
