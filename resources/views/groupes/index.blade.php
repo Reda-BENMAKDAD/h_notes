@@ -17,13 +17,13 @@
                <td>{{$groupe->libelle}}</td> 
                <td>{{$groupe->filiere->nom}}</td> 
                <td>
-                <a href="{{ route('groupes.edit', $groupe->idgroupes) }}" class="btn btn-primary">Modifier</a>
-                <form action="{{Route('groupes.destroy',$groupe->idgroupes)}}" method="POST">
+                <a href="{{ route('groupes.edit', $groupe->id) }}" class="btn btn-primary">Modifier</a>
+                <form action="{{Route('groupes.destroy',$groupe->id)}}" method="POST">
                     @method('delete')
                     @csrf
                     <input type="submit" value="supprimer" class="btn btn-danger bn"/>
                 </form>
-                <a href="{{Route('groupes.show',$groupe->idgroupes)}}">Details</a>
+                <a href="{{Route('groupes.show',$groupe->id)}}">Details</a>
             </td>
             @endforeach
             

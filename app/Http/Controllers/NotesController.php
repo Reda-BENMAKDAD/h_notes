@@ -27,15 +27,9 @@ class NotesController extends Controller
     public function create()
     {
         //
-        $validatedData = $request->validate([
-            'valeur' => 'required|numeric',
-            'idstagiere' => 'required|exists:stagieres,id',
-            'idexam' => 'required|exists:exams,id'
-        ]);
-
-        Notes::create($validatedData);
-
-        return redirect()->route('notes.index')->with('success', 'Note created successfully!');
+        $exams = Exam::all();
+        $stagieres = Stagieres::all();
+        return view('notes.create' , ['stagieres'=>$stagieres , 'exams'=>$exams]);
     
     }
 
@@ -88,8 +82,8 @@ class NotesController extends Controller
 
         $validatedData = $request->validate([
             'valeur' => 'required|numeric',
-            'idstagiere' => 'required|exists:stagieres,id',
-            'idexam' => 'required|exists:exams,id'
+            'idstagiere' => 'required',
+            'idexam' => 'required'
         ]);
 
         $note->update($validatedData);

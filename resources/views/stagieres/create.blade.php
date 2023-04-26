@@ -7,7 +7,7 @@
     <label for="infos">groupes:</label>
 <select name='idgroupe'>
     @foreach($groupes as $groupes)
-        <option value="{{$groupes->idgroupes}}">{{$groupes->nom}}</option>
+        <option value="{{$groupes->id}}">{{$groupes->libelle}}</option>
     @endforeach
 
 </select><br>

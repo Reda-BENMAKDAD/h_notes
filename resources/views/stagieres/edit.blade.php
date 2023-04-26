@@ -1,17 +1,17 @@
 
-<form action="{{ route('stagieres.update',$stagieres->idstagiere) }}" method="POST" style="max-width: 600px; margin: auto;">
+<form action="{{ route('stagieres.update',$stagieres->id) }}" method="POST" style="max-width: 600px; margin: auto;">
     @method('put')
     <h1>edite stagiere</h1>
     @csrf
    
    <label>id</label>
-    <input type="text" value="{{$stagieres->idstagiere}}" name="idgroupes"/>
+    <input type="text" value="{{$stagieres->id}}" name="idgroupes"/>
   
     
     <label for="infos">groupes:</label>
 <select name='idgroupe'>
     @foreach($groupes as $groupe)
-            <option value="{{$groupe->idgroupe}}" {{ $stagieres->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->nom}}</option>
+            <option value="{{$groupe->id}}" {{ $stagieres->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->libelle}}</option>
         @endforeach
 
 </select><br>

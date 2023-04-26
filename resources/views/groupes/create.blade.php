@@ -5,14 +5,14 @@
   
   
     <label for="infos">filiere:</label>
-<select name='idfiliere'>
+<select name='idFiliere'>
     @foreach($filiere as $filiere)
         <option value="{{$filiere->id}}">{{$filiere->nom}}</option>
     @endforeach
 
 </select><br>
     <label for="nom">nom:</label>
-    <input type="text" name="nom" /><br/>
+    <input type="text" name="libelle" /><br/>
   
     <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Valider</button>
   </form>

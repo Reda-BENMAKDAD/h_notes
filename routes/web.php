@@ -5,6 +5,10 @@ use App\Http\Controllers\FiliereController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\StagieresController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\NotesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +36,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('groupes',GroupesController::class);
     Route::resource('stagieres',StagieresController::class);
+    Route::resource('exam',ExamController::class);
+    Route::resource('notes',NotesController::class);
+
 
 });
 
