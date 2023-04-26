@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Filiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FiliereController extends Controller
 {
