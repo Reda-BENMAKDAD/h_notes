@@ -13,5 +13,12 @@ class Prof extends Model
         'nom',
         'prenom',
     ];
+
+    public function modules(){
+        return $this->hasMany(Module::class);
+    }
+    public function seances(){
+        return $this->hasMany(Seance::class);
+    }
     use HasFactory;
 }
