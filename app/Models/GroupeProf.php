@@ -18,6 +18,6 @@ class GroupeProf extends Model
 
 
     public function groupe(){
-        return $this->belongsTo(groupes::class , 'idGroupe');
+        return $this->belongsTo(Groupes::class , 'idGroupe');
     }
 }
