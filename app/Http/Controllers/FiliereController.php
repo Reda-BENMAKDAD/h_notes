@@ -47,8 +47,8 @@ class FiliereController extends Controller
 
         if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
-           }
-           Filliere::create($request->post());
+        }
+        Filliere::create($request->post());
 
         return redirect()->route('filiers.index')->with('message',"bien ajouté");
 
@@ -60,7 +60,7 @@ class FiliereController extends Controller
     public function show(string $id)
     {
         $filier=Filliere::findorFail($id);
-        return view('filiers.show',['filier'=>$filier]);
+        return view('filieres.show',['filier'=>$filier]);
     }
 
 
