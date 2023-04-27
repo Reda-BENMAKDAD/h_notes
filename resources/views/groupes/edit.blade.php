@@ -14,7 +14,7 @@
                         @method('put')
                         @csrf
 
-                        <label for="infos" class="block">filiere:</label>
+                        <label for="infos" class="block">Groupe:</label>
                         <select name='idFilliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                             @foreach ($groupes as $filiere)
                                 <option value="{{ $filiere->id }}"
