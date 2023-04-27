@@ -12,8 +12,9 @@ class ProfFactory extends Factory
     public function definition()
     {
         return [
+            // fake data with faker
             'nom' => $this->faker->lastName,
-            'prenom' => $this->faker->firstName
+            'prenom' => $this->faker->firstName,
         ];
     }
 }

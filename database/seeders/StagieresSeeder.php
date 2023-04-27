@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Stagieres;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Prof;
 
-class ProfSeeder extends Seeder
+class StagieresSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Prof::factory()->count(10)->create();   
+        Stagieres::factory()->count(500)->create();
     }
 }

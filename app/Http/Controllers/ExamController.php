@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Exam;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -14,7 +15,8 @@ class ExamController extends Controller
     public function index()
     {
         $exams = Exam::all();
-        return view('exam.index', compact('exams'));
+        $modules = Module::all();
+        return view('exam.index', compact('exams', 'modules'));
     }
 
     /**
@@ -22,7 +24,8 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('exam.create');
+        $modules = Module::all();
+        return view('exam.create', compact('modules'));
     }
 
     /**
@@ -48,7 +51,9 @@ class ExamController extends Controller
      */
     public function edit(string $id)
     {
-        return view('exam.edit');
+        $exam = Exam::findOrFail($id);
+        $modules = Module::all();
+        return view('exam.edit', compact('exam', 'modules'));
     }
 
     /**

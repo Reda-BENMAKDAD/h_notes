@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\GroupeProf;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Groupes;
+use App\Models\Prof;
 
 class GroupeProfFactory extends Factory
 {
@@ -12,8 +14,9 @@ class GroupeProfFactory extends Factory
     public function definition()
     {
         return [
-            'idProf' => $this->faker->numberBetween(1, 10),
-            'idGroupe' => $this->faker->numberBetween(1, 20)
+                
+                'idGroupe' => $this->faker->randomElement(Groupes::pluck('id')),
+                'idProf' => $this->faker->randomElement(Prof::pluck('id')),
         ];
     }
 }

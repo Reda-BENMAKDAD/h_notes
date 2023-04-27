@@ -1,27 +1,14 @@
-
-
-
-
-</body>
-</html>
-
-
-
-
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Groupes') }}
+                {{ __('Module') }}
             </h2>
             <div class=" text-right">
-                <a href="groupes/create"
-                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
-                    Créer Groupe</a>
+                <a href="module/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer Module</a>
             </div>
         </div>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -32,10 +19,13 @@
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        Libelle
+                                        Nom
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Filier
+                                        Prenom
+                                    </th>
+                                    <th>
+                                        Groupe
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Actions
@@ -43,23 +33,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($groupes as $groupe)
+                                @foreach($stagieres as $stagiere)
                                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{$groupe->libelle}}
+                                            {{ $stagiere->nom }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{$groupe->filiere->nom}}
+                                            {{ $stagiere->prenom }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <form action="{{Route('groupes.destroy',$groupe->id)}}" method="POST">
+                                            {{ $stagiere->groupes->libelle }}
+                                        </td>
+                                        <td>
+                                            <form action="{{ Route('groupes.destroy', $stagiere->id) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
-                                                <a  href="{{ route('groupes.edit', $groupe->id) }}"
+                                                <a href="{{ Route('groupes.edit', $stagiere->id) }}"
                                                     class="text-blue-600">Modifier</a>
-                                                {{-- <a href="{{ Route('filiers.show', $fil->id) }}"
-                                                    class="text-green-600 ml-4">Détails</a> --}}
                                                 <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
                                             </form>
                                         </td>
@@ -75,5 +66,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </x-app-layout>
-

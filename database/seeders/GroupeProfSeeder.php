@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\GroupeProf;
+use App\Models\Groupes;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class GroupeProfSeeder extends Seeder
 {
     public function run()
     {
-        GroupeProf::factory(10)->create();
+        GroupeProf::factory()->count(10)->create();
     }
 }

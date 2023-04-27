@@ -4,7 +4,12 @@ namespace Database\Factories;
 
 use App\Models\Seance;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Groupes;
+use App\Models\Module;
+use App\Models\Prof;
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Seance>
+ */
 class SeanceFactory extends Factory
 {
     protected $model = Seance::class;
@@ -12,10 +17,13 @@ class SeanceFactory extends Factory
     public function definition()
     {
         return [
-            'idModule' => \App\Models\Module::inRandomOrder()->first()->id,
-            'idProf' => \App\Models\Prof::inRandomOrder()->first()->id,
-            'date' => $this->faker->dateTime(),
-            'salle' => $this->faker->word(),        ];
+            'description' => $this->faker->sentence(4),
+            'date' => $this->faker->date(),
+            'type' => $this->faker->randomElement(['présentieòle', 'distancielle']),
+            'idModule' => $this->faker->randomElement(Module::pluck('id')),
+            'idGroupe' => $this->faker->randomElement(Groupes::pluck('id')),
+            'idProf' => $this->faker->randomElement(Prof::pluck('id')),
+        ];
     }
 }
 

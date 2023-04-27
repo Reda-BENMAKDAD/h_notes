@@ -2,20 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Notes;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Stagieres;
 
-
-class StagiaireSeeder extends Seeder
+class NoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
-        Stagieres::factory(10)->create();
-
+        Notes::factory()->count(50)->create();
     }
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Filliere;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Prof;
 
-class ProfSeeder extends Seeder
+class FilliereSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Prof::factory()->count(10)->create();   
+        Filliere::factory()->count(5)->create();
     }
 }

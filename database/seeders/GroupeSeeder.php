@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Prof;
+use App\Models\Groupes;
 
-class ProfSeeder extends Seeder
+class GroupeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Prof::factory()->count(10)->create();   
+        Groupes::factory()->count(10)->create();
     }
 }

@@ -12,6 +12,7 @@ class Prof extends Model
         'id',
         'nom',
         'prenom',
+        
     ];
 
     public function modules(){

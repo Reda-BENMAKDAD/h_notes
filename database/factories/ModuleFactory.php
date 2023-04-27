@@ -4,7 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Module;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
+use App\Models\Filliere;
+use App\Models\Prof;
 
 class ModuleFactory extends Factory
 {
@@ -13,10 +14,12 @@ class ModuleFactory extends Factory
     public function definition()
     {
         return [
-            'idFilliere' => DB::table('filieres')->inRandomOrder()->first()->id,
-            'idProfs' => DB::table('profs')->inRandomOrder()->first()->id,
-            'nom' => $this->faker->word(),
-            'masseHorraire' => $this->faker->numberBetween(10, 50),
+            'nom' => $this->faker->word,
+            'masseHorraire' => $this->faker->numberBetween(50, 150),
+            'idFilliere' => $this->faker->randomElement(Filliere::pluck('id')),
+            'idProf' => $this->faker->randomElement(Prof::pluck('id')),
+
+
         ];
     }
 }

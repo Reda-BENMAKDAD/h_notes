@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Filiere extends Model
+class Filliere extends Model
 {
     use HasFactory;
-    protected $table = 'filieres';
+    protected $table = 'fillieres';
     protected $primaryKey = 'id';
     protected $fillable = [
         'nom',
     ];
 
     public function module() {
-        return this->hasMany(Module::class);
+        return $this->hasMany(Module::class);
     }
 
     public function groupe() {
-        return this->hasMany(Groupes::class);
+        return $this->hasMany(Groupes::class);
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Groupes;
-use App\Models\Filiere;
+use App\Models\Filliere;
 
 class GroupesController extends Controller
 {
@@ -16,7 +16,7 @@ class GroupesController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('blades.groupes.index', compact('groupes'));
+        return view('groupes.index', compact('groupes'));
     }
 
     /**
@@ -25,8 +25,8 @@ class GroupesController extends Controller
     public function create()
     {
         //
-        $filiere = Filiere::all();
-        return view('blades.groupes.create' , ['filiere'=>$filiere]);
+        $filiere = Filliere::all();
+        return view('groupes.create' , ['filiere'=>$filiere]);
     }
 
     /**
@@ -48,7 +48,7 @@ class GroupesController extends Controller
     {
         //
         $groupes= Groupes::findOrFail($id);
-        return view('blades.groupes.edit' , ['groupes'=>$groupes]);
+        return view('groupes.edit' , ['groupes'=>$groupes]);
 
     }
 
@@ -58,9 +58,9 @@ class GroupesController extends Controller
     public function edit(string $id)
     {
         //
-        $filieres = Filiere::all();
+        $filieres = Filliere::all();
         $groupes= Groupes::findOrFail($id);
-        return view('blades.groupes.edit' , ['groupes'=>$groupes , 'filieres'=>$filieres]);
+        return view('groupes.edit' , ['groupes'=>$groupes , 'filieres'=>$filieres]);
     }
 
     /**

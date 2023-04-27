@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Groupes;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Stagieres;
-use App\Models\Exam;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class NotesFactory extends Factory
+class StagieresFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,11 +18,10 @@ class NotesFactory extends Factory
     public function definition(): array
     {
         return [
-            'valeur' => $this->faker->randomFloat(2, 0, 20),
-            'idexam' => $this->faker->randomElement(Exam::pluck('id')),
-            'idstagiere' => $this->faker->randomElement(Stagieres::pluck('id')),
-
-
+                
+                'nom' => $this->faker->lastName,
+                'prenom' => $this->faker->firstName,
+                'idGroupe' => $this->faker->randomElement(Groupes::pluck('id')),
         ];
     }
 }

@@ -32,7 +32,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('module.index')" :active="request()->routeIs('module.*')">
-                        {{ __('Module') }}
+                        {{ __('Modules') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('stagieres.index')" :active="request()->routeIs('stagieres.*')">
+                        {{ __('Stagieres') }}
                     </x-nav-link>
                 </div>
 
