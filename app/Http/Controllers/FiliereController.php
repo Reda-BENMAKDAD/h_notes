@@ -21,7 +21,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        return view('blades.filieres.create');
+        return view('filieres.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class FiliereController extends Controller
     public function edit(string $id)
     {
         $filier=Filliere::findorFail($id);
-        return view('filiers.edit',['filier'=>$filier]);
+        return view('filieres.edit',['filier'=>$filier]);
     }
 
     /**

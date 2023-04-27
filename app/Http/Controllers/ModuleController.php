@@ -6,7 +6,7 @@ use App\Models\Module;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Models\Filiere;
+use App\Models\Filliere;
 use App\Models\Prof;
 
 class ModuleController extends Controller
@@ -17,7 +17,7 @@ class ModuleController extends Controller
     public function index()
     {
         $module = Module::all();
-        return view('blades.module.index', ['modules'=>$module]);
+        return view('module.index', ['modules'=>$module]);
 
     }
 
@@ -26,10 +26,10 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        $filiere = Filiere::all();
+        $filiere = Filliere::all();
         $prof = Prof::all();
 
-        return view('blades.module.create', ['filiere'=>$filiere , 'prof'=>$prof]);
+        return view('module.create', ['filiere'=>$filiere , 'prof'=>$prof]);
     }
 
     /**
@@ -66,16 +66,16 @@ class ModuleController extends Controller
     public function show(string $id)
     {
         $module=Module::findorFail($id);
-        return view('bladeS.module.show',['modules'=>$module]);
+        return view('module.show',['modules'=>$module]);
     }
 
 
     public function edit(string $id)
     {
         $module=Module::findorFail($id);
-        $filiere = Filiere::all();
+        $filiere = Filliere::all();
         $profs = Prof::all();
-        return view('blades.module.edit',['module'=>$module,  'filiere'=>$filiere,  'prof'=>$profs]);
+        return view('module.edit',['module'=>$module,  'filiere'=>$filiere,  'prof'=>$profs]);
     }
 
     /**
@@ -105,7 +105,7 @@ class ModuleController extends Controller
            $module->nom=$request->input('nom');
            $module->masseHorraire=$request->input('masseHorraire');
            $module->save();
-           return redirect()->route('blades.module.index')->with('message','le module est bien modifié');
+           return redirect()->route('module.index')->with('message','le module est bien modifié');
     }
 
     /**
@@ -115,6 +115,6 @@ class ModuleController extends Controller
     {
         $module=Module::findorFail($id);
         $module->delete();
-        return redirect()->route('blades.module.index')->with('message','le module a bien été suppprimée');
+        return redirect()->route('module.index')->with('message','le module a bien été suppprimée');
     }
 }

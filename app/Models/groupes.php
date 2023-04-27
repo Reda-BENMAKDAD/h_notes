@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Groupes extends Model
 {
     use HasFactory;
-    protected $fillable = ['libelle', 'idFiliere'];
+    protected $fillable = ['libelle', 'idFilliere'];
     public $timestamps = false;
 
-    public function filiere()
+    public function filliere()
     {
-        return $this->belongsTo(Filiere::class, 'idFiliere');
+        return $this->belongsTo(Filliere::class, 'idFilliere');
     }
 }

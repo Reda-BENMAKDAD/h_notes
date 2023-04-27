@@ -50,7 +50,7 @@
                                             {{$groupe->libelle}}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{$groupe->filiere->nom}}
+                                            {{$groupe->filliere->nom}}
                                         </td>
                                         <td class="px-6 py-4">
                                             <form action="{{Route('groupes.destroy',$groupe->id)}}" method="POST">

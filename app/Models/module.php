@@ -17,7 +17,7 @@ class Module extends Model
     ];
 
     function filliere() {
-        return $this->belongsTo(Filiere::class, 'idFilliere');
+        return $this->belongsTo(Filliere::class, 'idFilliere');
     }
 
     function profs() {
