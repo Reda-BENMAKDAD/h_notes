@@ -1,11 +1,16 @@
-<head>
-  <title>Module</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Module') }}
+            </h2>
+            <div class=" text-right">
+                <a href="module/create"
+                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
+                    Créer Module</a>
+            </div>
+        </div>
+    </x-slot>
 <body class="p-5">
 
     <h3 class="text-center mt-3">Module</h3>
@@ -28,7 +33,7 @@
             <th>Actions</th>
         </thead>
         <tbody>
-        @foreach($module as $mod)
+        @foreach($modules as $mod)
         <tr>
             <td>{{$mod->id}}</td>
             <!-- <td>{{$mod->idFiliers}}</td>
@@ -56,3 +61,4 @@
     </table>
     </table>
 </body>
+</x-app-layout>
