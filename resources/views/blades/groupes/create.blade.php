@@ -1,18 +1,36 @@
+  <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Ajouter Groupe ') }}
+        </h2>
+    </x-slot>
 
-<form action="{{ route('groupes.store') }}" method="POST" style="max-width: 600px; margin: auto;">
-    <h1>ADD groupe</h1>
-    @csrf
-  
-  
-    <label for="infos">filiere:</label>
-<select name='idFiliere'>
-    @foreach($filiere as $filiere)
-        <option value="{{$filiere->id}}">{{$filiere->nom}}</option>
-    @endforeach
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="{{ route('groupes.store') }}" method="POST">
+                        @csrf
 
-</select><br>
-    <label for="nom">nom:</label>
-    <input type="text" name="libelle" /><br/>
-  
-    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Valider</button>
-  </form>
+                        <label for="infos" class="block">filiere:</label>
+                        <select name='idFiliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            @foreach($filiere as $filiere)
+                                <option value="{{$filiere->id}}">{{$filiere->nom}}</option>
+                            @endforeach
+                        </select>
+                        <label for="nom" class="block mt-4">libelle:</label>
+                        <input name="libelle" id="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg block" required>
+                            <div class="flex justify-center">
+                                <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
+                            </div>
+                        </form>
+
+                    @if(session('message'))
+                        <span>{{session('message')}}</span>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+

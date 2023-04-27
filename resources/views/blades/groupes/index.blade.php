@@ -10,9 +10,16 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Groupes') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Groupes') }}
+            </h2>
+            <div class=" text-right">
+                <a href="groupes/create"
+                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
+                    Créer Groupe</a>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -29,6 +36,9 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Filier
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
