@@ -17,7 +17,9 @@ class ProfFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // fake data with faker
+            'nom' => $this->faker->lastName,
+            'prenom' => $this->faker->firstName,
         ];
     }
 }

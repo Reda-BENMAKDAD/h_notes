@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Filiere;
+use App\Models\Filliere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +12,7 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filieres = Filiere::all();
+        $filieres = Filliere::all();
         return view('filieres.index', ['filieres'=>$filieres]);
     }
 
@@ -45,7 +45,7 @@ class FiliereController extends Controller
           if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
            }
-           Filiere::create($request->post());
+           Filliere::create($request->post());
 
       return redirect()->route('filiers.index')->with('message',"bien ajouté");
 
@@ -56,14 +56,14 @@ class FiliereController extends Controller
      */
     public function show(string $id)
     {
-        $filier=Filiere::findorFail($id);
+        $filier=Filliere::findorFail($id);
         return view('filiers.show',['filier'=>$filier]);
     }
 
    
     public function edit(string $id)
     {
-        $filier=Filiere::findorFail($id);
+        $filier=Filliere::findorFail($id);
         return view('filiers.edit',['filier'=>$filier]);
     }
 
@@ -90,7 +90,7 @@ class FiliereController extends Controller
         //     return back()->withErrors($validation->errors())->withInput();
         //    }
 
-           $filier=Filiere::findorFail($id);
+           $filier=Filliere::findorFail($id);
            $filier->nom=$request->input('libelle');
            $filier->save();
            return redirect()->route('filiers.index')->with('message','la filiere est bien modifié');
@@ -101,7 +101,7 @@ class FiliereController extends Controller
      */
     public function destroy(string $id)
     {
-        $filier=Filiere::findorFail($id);
+        $filier=Filliere::findorFail($id);
         $filier->delete();
         return redirect()->route('filiers.index')->with('message','la filiere a bien été suppprimée');
     }

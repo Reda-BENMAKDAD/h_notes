@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Groupes;
 
 class GroupeSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class GroupeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Groupes::factory()->count(10)->create();
     }
 }

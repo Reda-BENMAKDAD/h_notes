@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('groupes', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->foreignId('idFiliere');
-            $table->foreign('idFiliere')->references('id')->on('filieres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('idFilliere');
+            $table->foreign('idFilliere')->references('id')->on('fillieres')->onDelete('cascade')->onUpdate('cascade');
 
 
             $table->timestamps();

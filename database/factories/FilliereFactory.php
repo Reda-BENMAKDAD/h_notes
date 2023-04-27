@@ -17,7 +17,8 @@ class FilliereFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
+            'nom' => $this->faker->word,
         ];
     }
 }
