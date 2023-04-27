@@ -11,54 +11,58 @@
             </div>
         </div>
     </x-slot>
-<body class="p-5">
 
-    <h3 class="text-center mt-3">Module</h3>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-        </div>
-        <div class="col-md-3 text-right">
-            <a href="module/create" class="btn btn-success"> + Créer un module</a>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        id
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Nom
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Masse Horraire
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($modules as $mod)
+                            <tr>
+                                <td>{{$mod->id}}</td>
+                                <!-- <td>{{$mod->idFiliers}}</td>
+                                <td>{{$mod->idProfs}}</td> -->
+                                <td>{{$mod->nom}}</td>
+                                <td>{{$mod->masseHorraire}}</td>
+                                <td>
+                                    <form action="{{Route('module.destroy',$mod->id)}}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        
+                                        <a href="{{Route('module.edit',$mod->id)}}" class="btn btn-primary">Modifier</a>
+                                        <a href="{{Route('module.show',$mod->id)}}" class="btn btn-info">Détails</a>
+                                        <input type="submit" value="Supprimer" class="btn btn-danger"/>
+
+                                    </form>
+                                </td>
+                            </tr>
+
+                                @endforeach
+                            </tbody>
+                            @if(session('message'))
+                            <span>{{session('message')}}</span>
+                            @endif
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-    <table class="table">
-        <thead class="thead-dark">
-            <th>ID</th>
-            <!-- <th>IdFilliere</th>
-            <th>IdProfs</th> -->
-            <th>Nom</th>
-            <th>Masse Horraire</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
-        @foreach($modules as $mod)
-        <tr>
-            <td>{{$mod->id}}</td>
-            <!-- <td>{{$mod->idFiliers}}</td>
-            <td>{{$mod->idProfs}}</td> -->
-            <td>{{$mod->nom}}</td>
-            <td>{{$mod->masseHorraire}}</td>
-            <td>
-                <form action="{{Route('module.destroy',$mod->id)}}" method="POST">
-                    @method('delete')
-                    @csrf
-                    
-                    <a href="{{Route('module.edit',$mod->id)}}" class="btn btn-primary">Modifier</a>
-                    <a href="{{Route('module.show',$mod->id)}}" class="btn btn-info">Détails</a>
-                    <input type="submit" value="Supprimer" class="btn btn-danger"/>
-
-                </form>
-            </td>
-        </tr>
-
-            @endforeach
-        </tbody>
-        @if(session('message'))
-        <span>{{session('message')}}</span>
-        @endif
-    </table>
-    </table>
-</body>
 </x-app-layout>
