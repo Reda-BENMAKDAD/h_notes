@@ -18,7 +18,7 @@ class StagieresController extends Controller
     {
         //
         $stagieres = Stagieres::all();
-        return view('blades.stagieres.index' , ['stagieres'=>$stagieres]);
+        return view('stagieres.index' , ['stagieres'=>$stagieres]);
     }
 
     /**
@@ -28,7 +28,7 @@ class StagieresController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('blades.stagieres.create' , compact('groupes'));
+        return view('stagieres.create' , compact('groupes'));
     }
 
     /**
@@ -56,7 +56,7 @@ class StagieresController extends Controller
     {
         //
         $stagieres= Stagieres::findOrFail($id);
-        return view('blades.stagieres.show' , ['stagieres'=>$stagieres]);
+        return view('stagieres.show' , ['stagieres'=>$stagieres]);
 
     }
 
@@ -68,7 +68,7 @@ class StagieresController extends Controller
         //
         $groupes = Groupes::all();
         $stagieres= Stagieres::findOrFail($id);
-        return view('blades.stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
+        return view('stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
     }
 
     /**

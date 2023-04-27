@@ -29,7 +29,11 @@ class FiliereController extends Controller
      */
     public function store(Request $request)
     {
-
+//         //$user::Auth();
+//         if($use->role!='prof')
+// {
+    
+// }
         $nom=$request->input('nom');
 
           $validation=Validator::make($request->all(),
@@ -88,7 +92,7 @@ class FiliereController extends Controller
            }
 
            $filier=Filliere::findorFail($id);
-           $filier->nom=$request->input('libelle');
+           $filier->nom=$request->input('nom');
            $filier->save();
            return redirect()->route('filiers.index')->with('message','la filiere est bien modifié');
     }
