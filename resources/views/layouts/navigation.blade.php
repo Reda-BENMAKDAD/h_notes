@@ -30,7 +30,11 @@
                     </x-nav-link>
                 </div>
 
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('module.index')" :active="request()->routeIs('module.*')">
+                        {{ __('Module') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
