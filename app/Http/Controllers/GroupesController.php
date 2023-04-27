@@ -72,7 +72,7 @@ class GroupesController extends Controller
         $groupes= Groupes::findOrFail($id);
         $validatedData = $request->validate([
             'libelle' => 'required',
-            'idFiliere' => 'required|exists:fillieres,id'
+            'idFilliere' => 'required|exists:fillieres,id'
         ]);
 
         $groupes->update($validatedData);
