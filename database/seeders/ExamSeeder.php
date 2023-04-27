@@ -1,10 +1,10 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Exam;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Exam;
 
 class ExamSeeder extends Seeder
 {

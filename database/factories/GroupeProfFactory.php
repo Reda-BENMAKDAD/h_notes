@@ -2,21 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\GroupeProf;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Groupes;
 use App\Models\Prof;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GroupeProf>
- */
 class GroupeProfFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = GroupeProf::class;
+
+    public function definition()
     {
         return [
                 

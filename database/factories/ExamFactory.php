@@ -2,13 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Exam;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Module;
 
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Exam>
- */
 class ExamFactory extends Factory
 {
     /**

@@ -9,10 +9,9 @@ class Module extends Model
 {
     use HasFactory;
     protected $table = 'modules';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'idFilliere',
-        'idProfs',
+        'idProf',
         'nom',
         'masseHorraire',
     ];

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             GroupeProfSeeder::class,
             ModuleSeeder::class,
             ExamSeeder::class,
-            StagiaireSeeder::class,
+            StagieresSeeder::class,
             NoteSeeder::class,
             SeanceSeeder::class,
         ]);

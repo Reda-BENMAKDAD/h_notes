@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Groupes;
@@ -17,7 +18,7 @@ class StagieresController extends Controller
     {
         //
         $stagieres = Stagieres::all();
-        return view('stagieres.index' , ['stagiere'=>$stagiere]);
+        return view('blades.stagieres.index' , ['stagieres'=>$stagieres]);
     }
 
     /**
@@ -27,7 +28,7 @@ class StagieresController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('stagieres.create' , compact('groupes'));
+        return view('blades.stagieres.create' , compact('groupes'));
     }
 
     /**
@@ -45,7 +46,7 @@ class StagieresController extends Controller
         Stagieres::create($validatedData);
 
         return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
-  
+
     }
 
     /**
@@ -55,7 +56,7 @@ class StagieresController extends Controller
     {
         //
         $stagieres= Stagieres::findOrFail($id);
-        return view('stagieres.show' , ['stagieres'=>$stagieres]);
+        return view('blades.stagieres.show' , ['stagieres'=>$stagieres]);
 
     }
 
@@ -67,7 +68,7 @@ class StagieresController extends Controller
         //
         $groupes = Groupes::all();
         $stagieres= Stagieres::findOrFail($id);
-        return view('stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
+        return view('blades.stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
     }
 
     /**
@@ -87,7 +88,7 @@ class StagieresController extends Controller
         $stagiere->update($validatedData);
 
         return redirect()->route('stagieres.index')->with('success', 'Stagiere updated successfully!');
-  
+
     }
 
     /**
@@ -101,6 +102,6 @@ class StagieresController extends Controller
         $stagiere->delete();
 
         return redirect()->route('stagieres.index')->with('success', 'Stagiere deleted successfully!');
-   
+
     }
 }

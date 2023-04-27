@@ -21,7 +21,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        return view('filieres.create');
+        return view('blades.filieres.create');
     }
 
     /**
@@ -29,25 +29,24 @@ class FiliereController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $nom=$request->input('nom');
-       
+
           $validation=Validator::make($request->all(),
           [
             'nom'=>'required|max:200',
-            
-          ],
-          [
-           'nom.required'=>'Erreur le libelle est obligatoires' ,
-           'nom.max'=>'Erreur le libelle ne doit pas dépassé 200 caractères',
-          ]);
+        ],
+        [
+        'nom.required'=>'Erreur le nom est obligatoires' ,
+        'nom.max'=>'Erreur le nom ne doit pas dépassé 200 caractères',
+        ]);
 
-          if($validation->fails()){
+        if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
            }
            Filliere::create($request->post());
 
-      return redirect()->route('filiers.index')->with('message',"bien ajouté");
+        return redirect()->route('filiers.index')->with('message',"bien ajouté");
 
     }
 
@@ -60,7 +59,7 @@ class FiliereController extends Controller
         return view('filiers.show',['filier'=>$filier]);
     }
 
-   
+
     public function edit(string $id)
     {
         $filier=Filliere::findorFail($id);
@@ -72,23 +71,21 @@ class FiliereController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $validation=Validator::make($request->all(),
-        // [
-        //     'libelle'=>'required|max:25',
-        //     'infos'=>'required'
-        
-        // ],
-        // [
-        //     'libelle.required'=>'le libelle est obligatoire',
-        //     'libelle.max'=>'le libelle ne doit pas dépassé 25 caractères',
-        //     'infos.required'=>'les infos est obligatoire'
+        $validation=Validator::make($request->all(),
+        [
+            'nom'=>'required|max:25',
 
-        // ]
-        // );
+        ],
+        [
+            'nom.required'=>'le nom est obligatoire',
+            'nom.max'=>'le nom ne doit pas dépassé 25 caractères',
 
-        // if($validation->fails()){
-        //     return back()->withErrors($validation->errors())->withInput();
-        //    }
+        ]
+        );
+
+        if($validation->fails()){
+            return back()->withErrors($validation->errors())->withInput();
+           }
 
            $filier=Filliere::findorFail($id);
            $filier->nom=$request->input('libelle');

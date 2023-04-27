@@ -16,6 +16,32 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('filiers.index')" :active="request()->routeIs('filiers.*')">
+                        {{ __('Filiers') }}
+                    </x-nav-link>
+                </div>
+
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('groupes.index')" :active="request()->routeIs('groupes.*')">
+                        {{ __('Groupes') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('module.index')" :active="request()->routeIs('module.*')">
+                        {{ __('Modules') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('stagieres.index')" :active="request()->routeIs('stagieres.*')">
+                        {{ __('Stagieres') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->

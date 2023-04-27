@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Seance;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Groupes;
 use App\Models\Module;
@@ -11,12 +12,9 @@ use App\Models\Prof;
  */
 class SeanceFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Seance::class;
+
+    public function definition()
     {
         return [
             'description' => $this->faker->sentence(4),
@@ -28,3 +26,4 @@ class SeanceFactory extends Factory
         ];
     }
 }
+

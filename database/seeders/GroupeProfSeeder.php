@@ -9,10 +9,7 @@ use Illuminate\Database\Seeder;
 
 class GroupeProfSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
         GroupeProf::factory()->count(10)->create();
     }
