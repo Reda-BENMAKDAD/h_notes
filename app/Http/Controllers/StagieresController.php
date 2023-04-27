@@ -28,7 +28,7 @@ class StagieresController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('blades.stagieres.create' , compact('groupes'));
+        return view('stagieres.create' , compact('groupes'));
     }
 
     /**
