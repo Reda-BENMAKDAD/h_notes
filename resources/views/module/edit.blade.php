@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="pt-3 mt-3">
-                            <label for="infos" class="block">filiere:</label>
+                            <label for="infos" class="block">Prof:</label>
                             <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                                 @foreach($prof as $prf)
                                     <option value="{{$prf->id}}" @if ($filiere->id == $module->idFiliere ) selected @endif>{{$prf->nom}}</option>
