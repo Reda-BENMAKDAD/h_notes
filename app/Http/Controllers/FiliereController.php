@@ -13,7 +13,7 @@ class FiliereController extends Controller
     public function index()
     {
         $filieres = Filliere::all();
-        return view('filieres.index', ['filieres'=>$filieres]);
+        return view('blades.filieres.index', ['filieres'=>$filieres]);
     }
 
     /**
@@ -21,7 +21,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        return view('filieres.create');
+        return view('blades.filieres.create');
     }
 
     /**
@@ -43,8 +43,8 @@ class FiliereController extends Controller
 
         if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
-           }
-           Filliere::create($request->post());
+        }
+        Filiere::create($request->post());
 
         return redirect()->route('filiers.index')->with('message',"bien ajouté");
 
@@ -55,15 +55,15 @@ class FiliereController extends Controller
      */
     public function show(string $id)
     {
-        $filier=Filliere::findorFail($id);
-        return view('filiers.show',['filier'=>$filier]);
+        $filier=Filiere::findorFail($id);
+        return view('blades.filieres.show',['filier'=>$filier]);
     }
 
 
     public function edit(string $id)
     {
-        $filier=Filliere::findorFail($id);
-        return view('filieres.edit',['filier'=>$filier]);
+        $filier=Filiere::findorFail($id);
+        return view('blades.filieres.edit',['filier'=>$filier]);
     }
 
     /**
@@ -87,8 +87,8 @@ class FiliereController extends Controller
             return back()->withErrors($validation->errors())->withInput();
            }
 
-           $filier=Filliere::findorFail($id);
-           $filier->nom=$request->input('libelle');
+           $filier=Filiere::findorFail($id);
+           $filier->nom=$request->input('nom');
            $filier->save();
            return redirect()->route('filiers.index')->with('message','la filiere est bien modifié');
     }
@@ -98,7 +98,7 @@ class FiliereController extends Controller
      */
     public function destroy(string $id)
     {
-        $filier=Filliere::findorFail($id);
+        $filier=Filiere::findorFail($id);
         $filier->delete();
         return redirect()->route('filiers.index')->with('message','la filiere a bien été suppprimée');
     }
