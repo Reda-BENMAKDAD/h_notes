@@ -18,10 +18,10 @@ class Module extends Model
     ];
 
     function filliere() {
-        return this->belongsTo(Filiere::class, 'idFilliere');
+        return this->belongsTo(Filiere::class, 'id');
     }
 
     function profs() {
-        return this->belongsTo(Prof::class, 'idProfs');
+        return this->belongsTo(Prof::class, 'id');
     }
 }

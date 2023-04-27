@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FiliereController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupesController;
+use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/exam',ExamController::class);
     Route::resource('/notes',NotesController::class);
     Route::resource('/filiers', FiliereController::class );
+    Route::resource('/module', ModuleController::class );
 
 
 

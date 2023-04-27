@@ -15,7 +15,7 @@ class ModuleController extends Controller
     public function index()
     {
         $module = Module::all();
-        return view('modules.index', ['module'=>$module]);
+        return view('blades.module.index', ['modules'=>$module]);
 
     }
 
@@ -24,7 +24,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('modules.create');
+        return view('module.create');
     }
 
     /**
@@ -52,7 +52,7 @@ class ModuleController extends Controller
            }
            Module::create($request->post());
 
-      return redirect()->route('modules.index')->with('message',"bien ajouté");
+      return redirect()->route('module.index')->with('message',"bien ajouté");
 
     }
 
@@ -62,14 +62,14 @@ class ModuleController extends Controller
     public function show(string $id)
     {
         $module=Module::findorFail($id);
-        return view('modules.show',['module'=>$module]);
+        return view('module.show',['modules'=>$module]);
     }
 
    
     public function edit(string $id)
     {
         $module=Module::findorFail($id);
-        return view('modules.edit',['modules'=>$module]);
+        return view('module.edit',['modules'=>$module]);
     }
 
     /**
@@ -99,7 +99,7 @@ class ModuleController extends Controller
            $module->nom=$request->input('nom');
            $module->masseHorraire=$request->input('masseHorraire');
            $module->save();
-           return redirect()->route('modules.index')->with('message','le module est bien modifié');
+           return redirect()->route('module.index')->with('message','le module est bien modifié');
     }
 
     /**
@@ -109,6 +109,6 @@ class ModuleController extends Controller
     {
         $module=Module::findorFail($id);
         $module->delete();
-        return redirect()->route('modules.index')->with('message','le module a bien été suppprimée');
+        return redirect()->route('module.index')->with('message','le module a bien été suppprimée');
     }
 }
