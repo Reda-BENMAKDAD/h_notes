@@ -6,6 +6,8 @@ use App\Models\Module;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\Filiere;
+use App\Models\Prof;
 
 class ModuleController extends Controller
 {
@@ -24,7 +26,10 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('module.create');
+        $filiere = Filiere::all();
+        $prof = Prof::all();
+
+        return view('blades.module.create', ['filiere'=>$filiere , 'prof'=>$prof]);
     }
 
     /**
@@ -32,27 +37,26 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-      
-        $nom=$request->input('nom');
-        $masseHoraire=$request->input('masseHoraire');
-    
-          $validation=Validator::make($request->all(),
-          [
-            'nom'=>'required|max:200',
-            'masseHoraire'=>'required'
-          ],
-          [
-           'nom.required'=>'Erreur le libelle est obligatoires' ,
-           'nom.max'=>'Erreur le libelle ne doit pas dépassé 200 caractères',
-           'masseHoraire.required'=>'les infos est obligatoires'
-          ]);
 
-          if($validation->fails()){
+
+
+        $validation=Validator::make($request->all(),
+            [
+                'nom'=>'required|max:200',
+                'masseHorraire'=>'required',
+                'idFilliere' => 'required',
+                'idProf' => 'required'
+            ]
+        );
+
+
+        if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
-           }
-           Module::create($request->post());
+        }
 
-      return redirect()->route('module.index')->with('message',"bien ajouté");
+        Module::create($request->all());
+
+        return redirect()->route('module.index')->with('message',"bien ajouté");
 
     }
 
@@ -65,11 +69,13 @@ class ModuleController extends Controller
         return view('module.show',['modules'=>$module]);
     }
 
-   
+
     public function edit(string $id)
     {
         $module=Module::findorFail($id);
-        return view('module.edit',['modules'=>$module]);
+        $filiere = Filiere::all();
+        $profs = Prof::all();
+        return view('blades.module.edit',['module'=>$module,  'filiere'=>$filiere,  'prof'=>$profs]);
     }
 
     /**
@@ -81,7 +87,7 @@ class ModuleController extends Controller
         // [
         //     'libelle'=>'required|max:25',
         //     'infos'=>'required'
-        
+
         // ],
         // [
         //     'libelle.required'=>'le libelle est obligatoire',

@@ -13,8 +13,8 @@ class ModuleFactory extends Factory
     public function definition()
     {
         return [
-            'idFilliere' => DB::table('filieres')->inRandomOrder()->first()->id,
-            'idProfs' => DB::table('profs')->inRandomOrder()->first()->id,
+            'idFilliere' => DB::table('filieres')->inRandomOrder(),
+            'idProfs' => DB::table('profs')->inRandomOrder(),
             'nom' => $this->faker->word(),
             'masseHorraire' => $this->faker->numberBetween(10, 50),
         ];

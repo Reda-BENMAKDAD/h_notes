@@ -9,19 +9,18 @@ class Module extends Model
 {
     use HasFactory;
     protected $table = 'modules';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'idFilliere',
-        'idProfs',
+        'idProf',
         'nom',
         'masseHorraire',
     ];
 
     function filliere() {
-        return this->belongsTo(Filiere::class, 'id');
+        return $this->belongsTo(Filiere::class, 'id');
     }
 
     function profs() {
-        return this->belongsTo(Prof::class, 'id');
+        return $this->belongsTo(Prof::class, 'id');
     }
 }
