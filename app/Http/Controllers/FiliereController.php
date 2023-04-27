@@ -13,7 +13,7 @@ class FiliereController extends Controller
     public function index()
     {
         $filieres = Filliere::all();
-        return view('blades.filieres.index', ['filieres'=>$filieres]);
+        return view('filieres.index', ['filieres'=>$filieres]);
     }
 
     /**
@@ -21,7 +21,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        return view('blades.filieres.create');
+        return view('filieres.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class FiliereController extends Controller
         if($validation->fails()){
             return back()->withErrors($validation->errors())->withInput();
         }
-        Filiere::create($request->post());
+        Filliere::create($request->post());
 
         return redirect()->route('filiers.index')->with('message',"bien ajouté");
 
@@ -59,15 +59,15 @@ class FiliereController extends Controller
      */
     public function show(string $id)
     {
-        $filier=Filiere::findorFail($id);
-        return view('blades.filieres.show',['filier'=>$filier]);
+        $filier=Filliere::findorFail($id);
+        return view('filieres.show',['filier'=>$filier]);
     }
 
 
     public function edit(string $id)
     {
-        $filier=Filiere::findorFail($id);
-        return view('blades.filieres.edit',['filier'=>$filier]);
+        $filier=Filliere::findorFail($id);
+        return view('filieres.edit',['filier'=>$filier]);
     }
 
     /**
@@ -102,7 +102,7 @@ class FiliereController extends Controller
      */
     public function destroy(string $id)
     {
-        $filier=Filiere::findorFail($id);
+        $filier=Filliere::findorFail($id);
         $filier->delete();
         return redirect()->route('filiers.index')->with('message','la filiere a bien été suppprimée');
     }

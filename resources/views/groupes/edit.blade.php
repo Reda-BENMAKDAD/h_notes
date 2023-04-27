@@ -16,7 +16,7 @@
 
                         <label for="infos" class="block">filiere:</label>
                         <select name='idFiliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
-                            @foreach ($filieres as $filiere)
+                            @foreach ($groupes as $filiere)
                                 <option value="{{ $filiere->id }}"
                                     {{ $groupes->idFiliere == $filiere->id ? 'selected' : '' }}>{{ $filiere->nom }}
                                 </option>
