@@ -26,7 +26,7 @@ class GroupesController extends Controller
     {
         //
         $filiere = Filiere::all();
-        return view('groupes.create' , ['filiere'=>$filiere]);
+        return view('blades.groupes.create' , ['filiere'=>$filiere]);
     }
 
     /**
@@ -48,7 +48,7 @@ class GroupesController extends Controller
     {
         //
         $groupes= Groupes::findOrFail($id);
-        return view('groupes.edit' , ['groupes'=>$groupes]);
+        return view('blades.groupes.edit' , ['groupes'=>$groupes]);
 
     }
 
@@ -60,7 +60,7 @@ class GroupesController extends Controller
         //
         $filieres = Filiere::all();
         $groupes= Groupes::findOrFail($id);
-        return view('groupes.edit' , ['groupes'=>$groupes , 'filieres'=>$filieres]);
+        return view('blades.groupes.edit' , ['groupes'=>$groupes , 'filieres'=>$filieres]);
     }
 
     /**
