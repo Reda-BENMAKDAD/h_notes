@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             StagieresSeeder::class,
             NoteSeeder::class,
             SeanceSeeder::class,
+            prof_modulesSeeder::class,
         ]);
     }
 }
