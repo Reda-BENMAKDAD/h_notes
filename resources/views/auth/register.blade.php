@@ -40,7 +40,7 @@
         </div>
         <div class="mt-4">
             <x-input-label for="role" :value="__('role')" />
-            <select id="role" name="role" class="block mt-1 w-full">
+            <select id="role" name="role" class="block mt-1 w-full bg-white">
                 <option value="user">prof</option>
                 <option value="admin">admin</option>
                 <option value="stagiere">stagiere</option>
