@@ -5,6 +5,7 @@ use App\Http\Controllers\FiliereController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\StagieresController;
 
 /*
 |--------------------------------------------------------------------------

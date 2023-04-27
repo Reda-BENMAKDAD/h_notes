@@ -66,7 +66,7 @@ class ModuleController extends Controller
     public function show(string $id)
     {
         $module=Module::findorFail($id);
-        return view('module.show',['modules'=>$module]);
+        return view('bladeS.module.show',['modules'=>$module]);
     }
 
 
@@ -105,7 +105,7 @@ class ModuleController extends Controller
            $module->nom=$request->input('nom');
            $module->masseHorraire=$request->input('masseHorraire');
            $module->save();
-           return redirect()->route('module.index')->with('message','le module est bien modifié');
+           return redirect()->route('blades.module.index')->with('message','le module est bien modifié');
     }
 
     /**
@@ -115,6 +115,6 @@ class ModuleController extends Controller
     {
         $module=Module::findorFail($id);
         $module->delete();
-        return redirect()->route('module.index')->with('message','le module a bien été suppprimée');
+        return redirect()->route('blades.module.index')->with('message','le module a bien été suppprimée');
     }
 }
