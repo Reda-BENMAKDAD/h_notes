@@ -1,4 +1,16 @@
-
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Note') }}
+            </h2>
+            <div class=" text-right">
+                <a href="note/create"
+                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
+                    Ajouté Note</a>
+            </div>
+        </div>
+    </x-slot>
     <div class="container">
         <h1>Notes</h1>
         <a href="{{ route('notes.create') }}" class="btn btn-primary">Create</a>
@@ -33,4 +45,5 @@
             </tbody>
         </table>
     </div>
+</x-app-layout>    
 
