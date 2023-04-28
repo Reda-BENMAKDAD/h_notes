@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Note') }}
+                {{ __('Notes') }}
             </h2>
             <div class=" text-right">
                 <a href="note/create"
@@ -11,39 +11,45 @@
             </div>
         </div>
     </x-slot>
-    <div class="container">
-        <h1>Notes</h1>
-        <a href="{{ route('notes.create') }}" class="btn btn-primary">Create</a>
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Value</th>
-                    <th>Student</th>
-                    <th>Exam</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($notes as $note)
-                    <tr>
-                        <td>{{ $note->id }}</td>
-                        <td>{{ $note->valeur }}</td>
-                        <td>{{ $note->stagieres->nom }} {{ $note->stagieres->prenom }}</td>
-                        <td>{{ $note->exam->libelle }}</td>
-                        <td>
-                            <a href="{{ route('notes.show', $note->id) }}" class="btn btn-info">Show</a>
-                            <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('notes.destroy', $note->id) }}" method="POST" class="d-inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead
+                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                            <tr>
+                                <th scope="col" class="px-6 py-3">ID</th>
+                                <th scope="col" class="px-6 py-3">Value</th>
+                                <th scope="col" class="px-6 py-3">Student</th>
+                                <th scope="col" class="px-6 py-3">Exam</th>
+                                <th scope="col" class="px-6 py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($notes as $note)
+                                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $note->id }}</td>
+                                    <td class="px-6 py-4">{{ $note->valeur }}</td>
+                                    <td class="px-6 py-4">{{ $note->stagieres->nom }} {{ $note->stagieres->prenom }}</td>
+                                    <td class="px-6 py-4">{{ $note->exam->libelle }}</td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('notes.edit', $note->id) }}" class="text-blue-600">Modifier</a>
+                                        <form action="{{ route('notes.destroy', $note->id) }}" method="POST" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 ml-4">Supprimer</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </x-app-layout>    
 
