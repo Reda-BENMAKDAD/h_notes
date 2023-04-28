@@ -49,12 +49,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('prof.index')" :active="request()->routeIs('prof.*')">
-                        {{ __('prof') }}
+                        {{ __('Prof') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('seance.index')" :active="request()->routeIs('seance.*')">
-                        {{ __('seance') }}
+                        {{ __('Seance') }}
                     </x-nav-link>
                 </div>
 

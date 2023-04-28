@@ -1,22 +1,22 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Edit Note') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('notes.update', $notes->id) }}">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('modifier la note ') }}
+        </h2>
+    </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
+                <div class="p-6 text-gray-900 >
+                    <form action="{{Route('notes.update', $notes->id)}}" method="POST">
                         @csrf
-                        @method('PUT')
+                        @method('put')
 
-                        <div class="form-group row">
-                            <label for="valeur" class="col-md-4 col-form-label text-md-right">{{ __('Value') }}</label>
+                        <div class="">
+                            <label for="valeur" class="block mb-3 dark:text-gray-100">{{ __('Value') }}</label>
 
                             <div class="col-md-6">
-                                <input id="valeur" type="number" class="form-control @error('valeur') is-invalid @enderror" name="valeur" value="{{ old('valeur', $notes->valeur) }}" required autocomplete="valeur" autofocus>
+                                <input id="valeur" type="number" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('date') is-invalid @enderror" name="valeur" value="{{ old('valeur', $notes->valeur) }}" required autocomplete="valeur" autofocus>
 
                                 @error('valeur')
                                     <span class="invalid-feedback" role="alert">
@@ -26,11 +26,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="idstagiere" class="col-md-4 col-form-label text-md-right">{{ __('Stagiere') }}</label>
+                        <div class="">
+                            <label for="idstagiere" class="block mb-3 dark:text-gray-100">{{ __('Stagiere') }}</label>
 
                             <div class="col-md-6">
-                                <select id="idstagiere" class="form-control @error('idstagiere') is-invalid @enderror" name="idstagiere" required>
+                                <select id="idstagiere" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg" name="idstagiere" required>
                                     @foreach($stagieres as $stagiere)
                                         <option value="{{ $stagiere->id }}" {{ (old('idstagiere', $notes->idstagiere) == $stagiere->id) ? 'selected' : '' }}>{{ $stagiere->nom }} {{ $stagiere->prenom }}</option>
                                     @endforeach
@@ -44,11 +44,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="idexam" class="col-md-4 col-form-label text-md-right">{{ __('Exam') }}</label>
+                        <div class="">
+                            <label for="idexam" class="block mb-3 dark:text-gray-100">{{ __('Exam') }}</label>
 
                             <div class="col-md-6">
-                                <select id="idexam" class="form-control @error('idexam') is-invalid @enderror" name="idexam" required>
+                                <select id="idexam" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg" name="idexam" required>
                                     @foreach($exams as $exam)
                                         <option value="{{ $exam->id }}" {{ (old('idexam', $notes->idexam) == $exam->id) ? 'selected' : '' }}>{{ $exam->libelle }}</option>
                                     @endforeach
@@ -62,20 +62,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                        
+                            <div class="flex justify-center gap-2">
+                                <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">
                                     {{ __('Save') }}
                                 </button>
-                                <a href="{{ route('notes.index') }}" class="btn btn-secondary">
+                                <!-- <a href="{{ route('notes.index') }}" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">
                                     {{ __('Cancel') }}
-                                </a>
+                                </a> -->
                             </div>
-                        </div>
+                        
                     </form>
+                    @if(session('message'))
+                        <span>{{session('message')}}</span>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+</x-app-layout>

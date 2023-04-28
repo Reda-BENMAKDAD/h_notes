@@ -69,7 +69,9 @@ class NotesController extends Controller
     {
         //
         $notes = Notes::find($id);
-        return view('notes.edit', ['notes'=>$notes]);
+        $exams = Exam::all();
+        $stagieres = Stagieres::all();
+        return view('notes.edit', ['notes'=>$notes, 'stagieres'=>$stagieres, 'exams'=>$exams]);
     }
 
     /**
