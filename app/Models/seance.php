@@ -19,15 +19,15 @@ class Seance extends Model
 
     ];
     public function prof() {
-        return $this->belongsTo(Prof::class);
+        return $this->belongsTo(Prof::class, 'idProf');
     }
 
     public function module() {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Module::class, 'idModule');
     }
 
     public function groupe() {
-        return $this->belongsTo(Groupes::class);
+        return $this->belongsTo(Groupes::class, 'idGroupe');
     }
 
     use HasFactory;

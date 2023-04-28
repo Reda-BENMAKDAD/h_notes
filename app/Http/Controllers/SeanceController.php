@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Groupes;
+use App\Models\Module;
+use App\Models\Prof;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Seance;
@@ -14,7 +18,7 @@ class SeanceController extends Controller
     public function index()
     {
         $seances = Seance::all();
-        return view('seances.index', compact('seances'));
+        return view('seance.index', compact('seances'));
     }
 
     /**
@@ -22,7 +26,10 @@ class SeanceController extends Controller
      */
     public function create()
     {
-        return view('seances.create');
+        $modules = Module::all();
+        $profs = Prof::all();
+        $groupes = Groupes::all();
+        return view('seance.create', compact('modules', 'profs', 'groupes'));
     }
 
     /**
@@ -31,7 +38,7 @@ class SeanceController extends Controller
     public function store(Request $request)
     {
         Seance::create($request->all());
-        return redirect()->route('seances.index');
+        return redirect()->route('seance.index');
     }
 
     /**
@@ -40,7 +47,7 @@ class SeanceController extends Controller
     public function show(string $id)
     {
         $seance = Seance::findOrFail($id);
-        return view('seances.show', compact('seance'));
+        return view('seance.show', compact('seance'));
     }
 
     /**
@@ -48,7 +55,11 @@ class SeanceController extends Controller
      */
     public function edit(string $id)
     {
-        return view('seances.edit');
+        $seance = Seance::findOrFail($id);
+        $modules = Module::all();
+        $profs = Prof::all();
+        $groupes = Groupes::all();
+        return view('seance.edit', compact('seance', 'modules', 'profs', 'groupes'));
     }
 
     /**
@@ -57,7 +68,7 @@ class SeanceController extends Controller
     public function update(Request $request, string $id)
     {
         Seance::findOrFail($id)->update($request->all());
-        return redirect()->route('seances.index');
+        return redirect()->route('seance.index');
     }
 
     /**
@@ -66,6 +77,6 @@ class SeanceController extends Controller
     public function destroy(string $id)
     {
         Seance::findOrFail($id)->delete();
-        return redirect()->route('seances.index');
+        return redirect()->route('seance.index');
     }
 }
