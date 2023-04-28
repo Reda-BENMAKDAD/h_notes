@@ -17,10 +17,7 @@ return new class extends Migration
             $table->integer('masseHorraire');
             $table->timestamps();
             $table->foreignId('idFilliere');
-            $table->foreignId('idProf');
-
             $table->foreign('idFilliere')->references('id')->on('fillieres')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idProf')->references('id')->on('profs')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

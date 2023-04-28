@@ -48,7 +48,8 @@ class ProfController extends Controller
      */
     public function edit(string $id)
     {
-        return view('prof.edit');
+        $prof = Prof::findOrFail($id);
+        return view('prof.edit', compact('prof'));
     }
 
     /**

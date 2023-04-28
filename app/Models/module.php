@@ -11,7 +11,6 @@ class Module extends Model
     protected $table = 'modules';
     protected $fillable = [
         'idFilliere',
-        'idProf',
         'nom',
         'masseHorraire',
     ];

@@ -5,7 +5,7 @@
                 {{ __('Module') }}
             </h2>
             <div class=" text-right">
-                <a href="module/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer Module</a>
+                <a href="stagieres/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer stagiaire</a>
             </div>
         </div>
     </x-slot>
