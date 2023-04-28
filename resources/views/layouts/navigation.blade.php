@@ -41,6 +41,7 @@
                         {{ __('Stagieres') }}
                     </x-nav-link>
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('exam.index')" :active="request()->routeIs('exam.*')">
                         {{ __('Examen') }}
@@ -54,6 +55,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('seance.index')" :active="request()->routeIs('seance.*')">
                         {{ __('seance') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.*')">
+                        {{ __('Note') }}
                     </x-nav-link>
                 </div>
 
