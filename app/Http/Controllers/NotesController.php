@@ -71,7 +71,9 @@ class NotesController extends Controller
         $exams = Exam::all();
         $stagieres = Stagieres::all();
         $notes = Notes::find($id);
-        return view('notes.edit', ['notes'=>$notes , 'stagieres'=>$stagieres , 'exams'=>$exams]);
+        $exams = Exam::all();
+        $stagieres = Stagieres::all();
+        return view('notes.edit', ['notes'=>$notes, 'stagieres'=>$stagieres, 'exams'=>$exams]);
     }
 
     /**

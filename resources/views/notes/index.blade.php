@@ -36,10 +36,10 @@
                                     <td class="px-6 py-4">{{ $note->stagieres->nom }} {{ $note->stagieres->prenom }}</td>
                                     <td class="px-6 py-4">{{ $note->exam->libelle }}</td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('notes.edit', $note->id) }}" class="text-blue-600">Modifier</a>
                                         <form action="{{ route('notes.destroy', $note->id) }}" method="POST" class="d-inline-block">
                                             @csrf
                                             @method('DELETE')
+                                            <a href="{{ route('notes.edit', $note->id) }}" class="text-blue-600">Modifier</a>
                                             <button type="submit" class="text-red-600 ml-4">Supprimer</button>
                                         </form>
                                     </td>
