@@ -34,26 +34,28 @@
                             </thead>
                             <tbody>
                                 @foreach($stagieres as $stagiere)
-                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                        <th scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $stagiere->nom }}
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            {{ $stagiere->prenom }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $stagiere->groupes->libelle }}
-                                        </td>
-                                        <td>
-                                            <form action="{{ Route('stagieres.destroy', $stagiere->id) }}" method="POST">
-                                                @method('delete')
-                                                @csrf
-                                                <a href="{{ Route('stagieres.edit', $stagiere->id) }}"
-                                                    class="text-blue-600">Modifier</a>
-                                                <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
-                                            </form>
-                                        </td>
+                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-800">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $stagiere->nom }}
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                {{ $stagiere->prenom }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $stagiere->groupes->libelle }}
+                                            </td>
+                                            <td>
+                                                <form action="{{ Route('stagieres.destroy', $stagiere->id) }}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <a href="{{ Route('stagieres.edit', $stagiere->id) }}"
+                                                        class="text-blue-600">Modifier</a>
+                                                    <a href="{{Route('stagieres.show', $stagiere->id)}}" class="text-green-600 ml-4">Details</a>
+                                                    <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
+                                                </form>
+                                            </td>
+
                                     </tr>
                                 @endforeach
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Groupes;
 use App\Models\Stagieres;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -55,7 +56,14 @@ class StagieresController extends Controller
     {
         //
         $stagieres= Stagieres::findOrFail($id);
-        return view('stagieres.show' , ['stagieres'=>$stagieres]);
+        $modules = DB::table('modules')
+        ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
+        ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
+        ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+        ->where('stagieres.id', $id)
+        ->select('modules.*')
+        ->get();
+        return view('stagieres.show' , ['stagieres'=>$stagieres, 'modules'=>$modules]);
 
     }
 
