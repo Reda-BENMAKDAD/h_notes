@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Exam') }}
-        </h2>
-        <div class=" text-right">
-            <a href="exam/create"
-                class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
-                Créer Exam</a>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Exam') }}
+            </h2>
+            <div class=" text-right">
+                <a href="exam/create"
+                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
+                    Créer Exam</a>
+            </div>
         </div>
     </x-slot>
 
@@ -68,7 +70,7 @@
                         @if (session('message'))
                             <span>{{ session('message') }}</span>
                         @endif
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
