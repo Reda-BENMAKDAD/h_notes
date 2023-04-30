@@ -1,7 +1,7 @@
  <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('créer groupe ') }}
+            {{ __('créer Stagiere ') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{Route('groupes.store')}}" method="POST">
+                    <form action="{{Route('stagieres.store')}}" method="POST">
                         @csrf
                         <div class="">
                                 <label for="nom" class="block mb-1">Nom</label>
@@ -27,12 +27,12 @@
                     </div>
                     <div class="pt-3 mt-3">
                         <label for="infos" class="block">Groupe: </label>
-                        <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idgroupe' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                             @foreach($groupes as $groupe)
                                 <option value="{{$groupe->id}}">{{$groupe->libelle}}</option>
                             @endforeach
                         </select>
-                        @error('idProf')
+                        @error('idgroupe')
                             <div class="text-red-600">{{ $message }}</div>
                         @enderror
                     </div>

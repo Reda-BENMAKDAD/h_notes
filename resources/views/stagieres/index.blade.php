@@ -46,10 +46,10 @@
                                             {{ $stagiere->groupes->libelle }}
                                         </td>
                                         <td>
-                                            <form action="{{ Route('groupes.destroy', $stagiere->id) }}" method="POST">
+                                            <form action="{{ Route('stagieres.destroy', $stagiere->id) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ Route('groupes.edit', $stagiere->id) }}"
+                                                <a href="{{ Route('stagieres.edit', $stagiere->id) }}"
                                                     class="text-blue-600">Modifier</a>
                                                 <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
                                             </form>

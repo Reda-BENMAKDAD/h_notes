@@ -1,30 +1,53 @@
+  <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Edit Stagiere ') }}
+        </h2>
+    </x-slot>
 
-<form action="{{ route('stagieres.update',$stagieres->id) }}" method="POST" style="max-width: 600px; margin: auto;">
-    @method('put')
-    <h1>edite stagiere</h1>
-    @csrf
-   
-   <label>id</label>
-    <input type="text" value="{{$stagieres->id}}" name="idgroupes"/>
-  
-    
-    <label for="infos">groupes:</label>
-<select name='idgroupe'>
-    @foreach($groupes as $groupe)
-            <option value="{{$groupe->id}}" {{ $stagieres->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->libelle}}</option>
-        @endforeach
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="{{ route('stagieres.update',$stagieres->id) }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <div class="">
+                                <label for="nom" class="block mb-1">Nom</label>
+                                <input type="text" name="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" value="{{ $stagieres->nom }}"/>
+                                @error('nom')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                        </div>
+                        <div class="mt-5">
+                            <label for="prenom " class="block mb-1">Prenom</label>
+                            <input type="text" name="prenom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('prenom') is-invalid @enderror" value="{{ $stagieres->prenom }}"/>
+                            @error('prenom')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="pt-3 mt-3">
+                        <label for="infos" class="block">Groupe: </label>
+                        <select name='idgroupe' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            @foreach($groupes as $groupe)
+                                <option value="{{$groupe->id}}" {{ $stagieres->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->libelle}}</option>
+                            @endforeach
+                        </select>
+                        @error('idgroupe')
+                            <div class="text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                        <div class="flex justify-center">
+                            <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
+                        </div>
+                    </form>
 
-</select><br>
-    <label for="nom">nom:</label>
-    <input type="text" name="nom" id="nom" style="display: block; margin-bottom: 10px; padding: 5px; width: 100%;" value="{{ $stagieres->nom }}">
-    <label for="prenom">prenom:</label>
-    <input type="text" name="prenom" id="prenom" style="display: block; margin-bottom: 10px; padding: 5px; width: 100%;" value="{{ $stagieres->prenom }}">
-  
-  
-    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Valider</button>
-  </form>
-  
-  @if(session('message'))
-    <div style="background-color: #4CAF50; color: white; padding: 10px; text-align: center; margin-top: 10px;">{{ session('message') }}</div>
-  @endif
-  
+                    @if(session('message'))
+                        <span>{{session('message')}}</span>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+

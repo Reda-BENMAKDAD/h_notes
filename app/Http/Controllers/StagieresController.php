@@ -44,7 +44,6 @@ class StagieresController extends Controller
         ]);
 
         Stagieres::create($validatedData);
-
         return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
 
     }
