@@ -1,26 +1,52 @@
+ <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('créer groupe ') }}
+        </h2>
+    </x-slot>
 
-<form action="{{ route('stagieres.store') }}" method="POST" style="max-width: 600px; margin: auto;">
-    <h1>ADD groupe</h1>
-    @csrf
-  
-  
-    <label for="infos">groupes:</label>
-<select name='idgroupe'>
-    @foreach($groupes as $groupes)
-        <option value="{{$groupes->id}}">{{$groupes->libelle}}</option>
-    @endforeach
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form action="{{Route('groupes.store')}}" method="POST">
+                        @csrf
+                        <div class="">
+                                <label for="nom" class="block mb-1">Nom</label>
+                                <input type="text" name="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
+                                @error('nom')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                        </div>
+                        <div class="mt-5">
+                            <label for="prenom " class="block mb-1">Prenom</label>
+                            <input type="text" name="prenom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('prenom') is-invalid @enderror" />
+                            @error('prenom')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="pt-3 mt-3">
+                        <label for="infos" class="block">Groupe: </label>
+                        <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            @foreach($groupes as $groupe)
+                                <option value="{{$groupe->id}}">{{$groupe->libelle}}</option>
+                            @endforeach
+                        </select>
+                        @error('idProf')
+                            <div class="text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                        <div class="flex justify-center">
+                            <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
+                        </div>
+                    </form>
 
-</select><br>
-    <label for="nom">nom:</label>
-    <input type="text" name="nom" id="nom" style="display: block; margin-bottom: 10px; padding: 5px; width: 100%;" required>
-    <label for="prenom">prenom:</label>
-    <input type="text" name="prenom" id="prenom" style="display: block; margin-bottom: 10px; padding: 5px; width: 100%;" required>
-  
-  
-    <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Valider</button>
-  </form>
-  
-  @if(session('message'))
-    <div style="background-color: #4CAF50; color: white; padding: 10px; text-align: center; margin-top: 10px;">{{ session('message') }}</div>
-  @endif
-  
+                    @if(session('message'))
+                        <span>{{session('message')}}</span>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
