@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+
+        <title>H-Note</title>
+        <Link rel="icon" href="{{ asset('logo.svg') }}"/>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
