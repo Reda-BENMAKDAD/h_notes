@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Groupes;
 use App\Models\Filliere;
+use App\Models\Stagieres;
+use App\Models\Module;
+use App\Models\Prof;
 
 class GroupesController extends Controller
 {
@@ -47,8 +50,20 @@ class GroupesController extends Controller
     public function show(string $id)
     {
         //
+        $profs = Prof::join('modules', 'profs.id', '=', 'modules.idProfs')
+            ->join('seances', 'modules.id', '=', 'seances.idModule')
+            ->where('seances.idGroupe', $id)
+            ->select('profs.*')
+            ->distinct()
+            ->get();
+        $modules = Module::join('seances', 'modules.id', '=', 'seances.idModule')
+        ->select('modules.*')
+        ->where('seances.idGroupe', $id)
+        ->distinct()
+        ->get();
+        $stagieres = Stagieres::where('idgroupe', $id)->get();
         $groupes= Groupes::findOrFail($id);
-        return view('groupes.edit' , ['groupes'=>$groupes]);
+        return view('groupes.show' , ['groupes'=>$groupes , 'stagiere'=>$stagieres , 'modules'=>$modules , 'profs'=>$profs]);
 
     }
 

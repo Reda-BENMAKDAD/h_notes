@@ -13,6 +13,7 @@ class Module extends Model
         'idFilliere',
         'nom',
         'masseHorraire',
+        'idProfs',
     ];
 
     function filliere() {

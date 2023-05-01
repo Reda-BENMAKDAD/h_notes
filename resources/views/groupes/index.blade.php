@@ -58,8 +58,8 @@
                                                 @csrf
                                                 <a  href="{{ route('groupes.edit', $groupe->id) }}"
                                                     class="text-blue-600">Modifier</a>
-                                                {{-- <a href="{{ Route('filiers.show', $fil->id) }}"
-                                                    class="text-green-600 ml-4">Détails</a> --}}
+                                                 <a href="{{ Route('groupes.show', $groupe->id) }}"
+                                                    class="text-green-600 ml-4">Détails</a> 
                                                 <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
                                             </form>
                                         </td>
