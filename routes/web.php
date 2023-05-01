@@ -31,21 +31,23 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('prof', ProfController::class);
-    Route::resource('seance', SeanceController::class);
-    Route::resource('exam', ExamController::class);
-    Route::resource('filiers', FiliereController::class);
-    Route::resource('groupes', GroupesController::class);
-    Route::resource('module', ModuleController::class);
+    Route::resource('prof', ProfController::class)->middleware('role:admin');
+    Route::resource('seance', SeanceController::class)->middleware('role:admin');
+    Route::resource('exam', ExamController::class)->middleware('role:admin');
+    Route::resource('filiers', FiliereController::class)->middleware('role:admin');
+    Route::resource('groupes', GroupesController::class)->middleware('role:admin');
+    Route::resource('module', ModuleController::class)->middleware('role:admin');
     Route::resource('stagieres', StagieresController::class);
     Route::resource('notes', NotesController::class);
 
 
-});
+
+
+
 
 
 
