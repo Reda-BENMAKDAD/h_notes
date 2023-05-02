@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->integer('valeur');
+            $table->float('valeur');
             $table->foreignId('idexam');
             $table->foreignId('idstagiere');
 

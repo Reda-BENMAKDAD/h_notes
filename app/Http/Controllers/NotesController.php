@@ -28,8 +28,8 @@ class NotesController extends Controller
     {
         //
         $exams = Exam::all();
-        $stagieres = Stagieres::all();
-        return view('notes.create' , ['stagieres'=>$stagieres , 'exams'=>$exams]);
+        $stagiaires = Stagieres::all();
+        return view('notes.create' , compact("stagiaires","exams"));
     
     }
 
@@ -41,7 +41,7 @@ class NotesController extends Controller
         //
 
         $validatedData = $request->validate([
-            'valeur' => 'required|numeric',
+            'valeur' => 'required|regex:/^\d*(\.\d{2})?$/',
             'idstagiere' => 'required|exists:stagieres,id',
             'idexam' => 'required|exists:exams,id'
         ]);
@@ -70,10 +70,9 @@ class NotesController extends Controller
         //
         $exams = Exam::all();
         $stagieres = Stagieres::all();
-        $notes = Notes::find($id);
+        $note = Notes::find($id);
         $exams = Exam::all();
-        $stagieres = Stagieres::all();
-        return view('notes.edit', ['notes'=>$notes, 'stagieres'=>$stagieres, 'exams'=>$exams]);
+        return view('notes.edit', ['note'=>$note, 'stagieres'=>$stagieres, 'exams'=>$exams]);
     }
 
     /**
@@ -85,7 +84,8 @@ class NotesController extends Controller
         $note = Notes::find($id);
 
         $validatedData = $request->validate([
-            'valeur' => 'required|numeric',
+            // this regex is to validate the float number with 2 decimal places
+            'valeur' => 'required|regex:/^\d*(\.\d{2})?$/',
             'idstagiere' => 'required',
             'idexam' => 'required'
         ]);
