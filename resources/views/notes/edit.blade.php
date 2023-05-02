@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{Route('notes.update')}}" method="POST">
+                    <form action="{{Route('notes.update', $note->id)}}" method="POST">
                         @csrf
                         @method("put")
                         <div class="">
@@ -22,7 +22,7 @@
                         <div class="">
                             <label for="idstagiere" class="block mb-3">stagiaire</label>
                             <select name='idstagiere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
-                                @foreach($stagiaires as $stagiaire)
+                                @foreach($stagieres as $stagiaire)
                                     <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option> 
                                 @endforeach
                             </select>
