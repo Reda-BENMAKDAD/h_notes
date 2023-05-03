@@ -27,10 +27,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware(['auth', 'verified', 'role:admin'])->name('admin');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -43,6 +49,7 @@ Route::get('/dashboard', function () {
     Route::resource('module', ModuleController::class)->middleware('role:admin');
     Route::resource('stagieres', StagieresController::class);
     Route::resource('notes', NotesController::class);
+});
 
 
 
@@ -53,3 +60,4 @@ Route::get('/dashboard', function () {
 
 
 require __DIR__.'/auth.php';
+
