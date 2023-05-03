@@ -15,7 +15,7 @@ class Seance extends Model
         'date',
         'description',
         'type',
-        'type'
+        'nom'
 
     ];
     public function prof() {

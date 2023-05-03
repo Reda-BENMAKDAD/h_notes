@@ -1,11 +1,13 @@
 <x-app-layout>
-    <x-slot name="header" class="flex">
+    <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Seance') }}
+                {{ __('Absence') }}
             </h2>
             <div class=" text-right">
-                <a href="seance/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer une séance</a>
+                <a href="absence/create"
+                    class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> +
+                    Créer Absence</a>
             </div>
         </div>
     </x-slot>
@@ -19,25 +21,16 @@
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    nom
+                                    stagiaire
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    type
+                                    seance
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     date
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    description
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    prof
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    module
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    groupe
+                                    type absence
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     actions
@@ -45,39 +38,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($seances as $seance)
+                            @foreach ($absences as $absence)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $seance->nom}}
-                                    </th>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $seance->type}}
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $absence->stagiaire->nom . ' ' . $absence->stagiaire->prenom }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ $seance->date }}
+                                        {{ $absence->seance->nom }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $seance->description }}
+                                        {{ $absence->seance->date }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $seance->prof->nom }}
+                                        {{ $absence->typeAbsence }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $seance->module->nom }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $seance->groupe->nom }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <form action="{{ Route('seance.destroy', $seance->id) }}" method="POST">
+                                        <form action="{{ Route('absence.destroy', $absence->id) }}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <a href="{{ Route('seance.edit', $seance->id) }}"
+                                            <a href="{{ Route('absence.edit', $absence->id) }}"
                                                 class="text-blue-600">Modifier</a>
-                                            {{-- <a href="{{ Route('filiers.show', $fil->id) }}"
-                                                class="text-green-600 ml-4">Détails</a> --}}
                                             <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
                                         </form>
                                     </td>

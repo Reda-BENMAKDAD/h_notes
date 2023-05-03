@@ -12,6 +12,13 @@
                     <form action="{{Route('seance.store')}}" method="POST">
                         @csrf
                         <div class="">
+                            <label for="nom" class="block mb-3">nom: </label>
+                            <input type="text" name="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('type') is-invalid @enderror" />
+                            @error('nom')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="">
                                 <label for="type" class="block mb-3">type</label>
                                 <input type="text" name="type" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('type') is-invalid @enderror" />
                                 @error('type')

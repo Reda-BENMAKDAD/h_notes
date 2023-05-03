@@ -17,6 +17,7 @@ class ModuleFactory extends Factory
             'nom' => $this->faker->word,
             'masseHorraire' => $this->faker->numberBetween(50, 150),
             'idFilliere' => $this->faker->randomElement(Filliere::pluck('id')),
+            'idProfs' => $this->faker->randomElement(Prof::pluck('id')),
 
 
         ];

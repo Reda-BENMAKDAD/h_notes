@@ -13,6 +13,13 @@
                         @csrf
                         @method('put')
                         <div class="">
+                            <label for="nom" class="block mb-3">nom: </label>
+                            <input type="text" value="{{ $seance->nom }}" name="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('type') is-invalid @enderror" />
+                            @error('nom')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="">
                                 <label for="type" class="block mb-3">type</label>
                                 <input type="text" name="type" value="{{ $seance->type }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('type') is-invalid @enderror" />
                                 @error('type')
