@@ -41,9 +41,9 @@
                 </div>
 
                 <div class="px-10">
-                    <div class="flex justify-center my-4 space-x-4">
+                    <div class="flex justify-center my-4 space-x-4 ">
                         <a href="{{ route('stagieres.show', [$stagieres->id, 'section' => 'modules']) }}" 
-                            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 @if(request()->section == 'modules') font-bold @endif">
+                            class="px-4 py-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 @if(request()->section == 'modules' ) font-bold @endif">
                             Modules
                         </a>
                         <a href="{{ route('stagieres.show', [$stagieres->id, 'section' => 'notes']) }}" 
@@ -55,7 +55,7 @@
                             Séances
                         </a>
                     </div>
-                    
+                  
                     @if(request()->section == 'modules')
                     <div class="px-10">
                         <div class="mb-4">
