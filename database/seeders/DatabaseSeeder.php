@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             NoteSeeder::class,
             SeanceSeeder::class,
             prof_modulesSeeder::class,
-            RoleAndPermissionSeeder::class,
+            // RoleAndPermissionSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class  
         ]);

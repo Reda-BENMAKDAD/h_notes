@@ -20,11 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
-        'role',
-=======
-
->>>>>>> 1632df61e49748dbb902e20872c69b091c28ea64
     ];
 
     /**
@@ -46,16 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Check if the user has a specific role.
-     *
-     * @param string $role
-     * @return bool
-     */
-    public function hasRole(string $role): bool
-    {
-        return $this->role === $role;
-    }
+    
 
     /**
      * Check if the user has any of the specified roles.
