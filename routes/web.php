@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ProfController;
 use App\Http\Controllers\SeanceController;
@@ -23,9 +24,8 @@ use App\Http\Controllers\NotesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
