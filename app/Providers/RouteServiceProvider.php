@@ -35,7 +35,6 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/web.php'));
     });
 
-    $this->app['router']->aliasMiddleware('role', \App\Http\Middleware\EnsureUserHasRole::class);
 
 }
 

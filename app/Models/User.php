@@ -42,15 +42,4 @@ class User extends Authenticatable
     ];
 
     
-
-    /**
-     * Check if the user has any of the specified roles.
-     *
-     * @param array $roles
-     * @return bool
-     */
-    public function hasAnyRole(array $roles): bool
-    {
-        return in_array($this->role, $roles);
-    }
 }
