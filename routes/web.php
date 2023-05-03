@@ -10,6 +10,7 @@ use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\StagieresController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\AbsenceController;
 
 
 /*
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('module', ModuleController::class);
     Route::resource('stagieres', StagieresController::class);
     Route::resource('notes', NotesController::class);
+    Route::resource('absence', AbsenceController::class);
 
 
 });
