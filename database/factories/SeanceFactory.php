@@ -17,6 +17,7 @@ class SeanceFactory extends Factory
     public function definition()
     {
         return [
+            'nom' => $this->faker->sentence(2),
             'description' => $this->faker->sentence(4),
             'date' => $this->faker->date(),
             'type' => $this->faker->randomElement(['présentieòle', 'distancielle']),

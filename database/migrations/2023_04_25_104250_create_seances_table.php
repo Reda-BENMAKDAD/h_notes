@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("description");
             $table->date("date");
+            $table->string("nom");
             $table->string("type");
             $table->foreignId("idProf");
             $table->foreign("idProf")->references("id")->on("profs")->onDelete("cascade")->onUpdate("cascade");
