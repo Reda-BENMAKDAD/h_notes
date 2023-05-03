@@ -14,14 +14,14 @@
                         @method('put')
                         <div class="">
                                 <label for="nom " class="block mb-3">nom</label>
-                                <input type="text" value="{{ $prof->nom }}"" name="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
+                                <input type="text" value="{{ $prof->nom }}"" name="nom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('nom') is-invalid @enderror" />
                                 @error('nom')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="">
                             <label for="prenom " class="block mb-3">prenom</label>
-                            <input type="prenom" value="{{ $prof->prenom }}" name="prenom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('prenom') is-invalid @enderror" />
+                            <input type="prenom" value="{{ $prof->prenom }}" name="prenom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('prenom') is-invalid @enderror" />
                             @error('prenom')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

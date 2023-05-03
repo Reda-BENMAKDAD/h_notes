@@ -14,21 +14,21 @@
                         @method('put')
                         <div class="">
                                 <label for="nom " class="block mb-3">libelle</label>
-                                <input type="text" value="{{ $exam->libelle }}"" name="libelle" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
+                                <input type="text" value="{{ $exam->libelle }}"" name="libelle" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('nom') is-invalid @enderror" />
                                 @error('libelle')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="">
                             <label for="nom " class="block mb-3">date</label>
-                            <input type="date" value="{{ $exam->date }}" name="date" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('date') is-invalid @enderror" />
+                            <input type="date" value="{{ $exam->date }}" name="date" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('date') is-invalid @enderror" />
                             @error('date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
                     <div class="">
                         <label for="idModule " class="block mb-3">idModule</label>
-                        <select name='idModule' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idModule' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($modules as $module)
                                 <option value="{{$module->id}}" {{ $exam->module->id == $module->id ? "selected" : "" }} > {{$module->nom}} </option>
                             @endforeach
@@ -41,7 +41,7 @@
 
                     <div class="">
                         <label for="type " class="block mb-3">type</label>
-                        <select name='type' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='type' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             <option value="controle 1">controle 1</option>
                             <option value="controle 2">controle 2</option>
                             <option value="EFM">EFM</option>

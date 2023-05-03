@@ -13,13 +13,13 @@
                         @csrf
 
                         <label for="infos" class="block">filiere:</label>
-                        <select name='idFilliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idFilliere' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($filiere as $filiere)
                                 <option value="{{$filiere->id}}">{{$filiere->nom}}</option>
                             @endforeach
                         </select>
                         <label for="nom" class="block mt-4">libelle:</label>
-                        <input name="libelle" id="nom" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg block" required>
+                        <input name="libelle" id="nom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg block" required>
                             <div class="flex justify-end">
                                 <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
                             </div>

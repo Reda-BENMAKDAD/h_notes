@@ -14,28 +14,28 @@
                         @method('put')
                         <div class="">
                                 <label for="type" class="block mb-3">type</label>
-                                <input type="text" name="type" value="{{ $seance->type }}" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('type') is-invalid @enderror" />
+                                <input type="text" name="type" value="{{ $seance->type }}" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('type') is-invalid @enderror" />
                                 @error('type')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="">
                             <label for="date " class="block mb-3">date</label>
-                            <input type="date" value="{{ $seance->date }}" name="date" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('date') is-invalid @enderror" />
+                            <input type="date" value="{{ $seance->date }}" name="date" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('date') is-invalid @enderror" />
                             @error('date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
                     <div class="">
                         <label for="description " class="block mb-3">description</label>
-                        <textarea  name="description" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('description') is-invalid @enderror" >{{ $seance->description }}</textarea>
+                        <textarea  name="description" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('description') is-invalid @enderror" >{{ $seance->description }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="pt-3 mt-3">
                         <label for="infos" class="block">Prof: </label>
-                        <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idProf' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($profs as $prof)
                                 <option value="{{$prof->id}}"  {{ $seance->prof->id == $prof->id ? "selected" : "" }}  >{{$prof->nom}}</option>
                             @endforeach
@@ -46,7 +46,7 @@
                     </div>
                     <div class="pt-3 mt-3">
                         <label for="idGroupe" class="block">Groupe: </label>
-                        <select name='idGroupe' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idGroupe' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($groupes as $groupe)
                                 <option value="{{$groupe->id}}" {{ $seance->groupe->id == $groupe->id ? "selected" : "" }}>{{$groupe->libelle}}</option>
                             @endforeach
@@ -58,7 +58,7 @@
 
                     <div class="pt-3 mt-3">
                         <label for="idModule" class="block">Module: </label>
-                        <select name='idModule' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                        <select name='idModule' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($modules as $module)
                                 <option value="{{$module->id}}" {{ $seance->module->id == $module->id ? "selected" : "" }}>{{$module->nom}}</option>
                             @endforeach

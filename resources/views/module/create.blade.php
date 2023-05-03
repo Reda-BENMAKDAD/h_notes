@@ -13,7 +13,7 @@
                         @csrf
                         <div class="form-group mb-4">
                             <label for="nom" class="block">Nom</label>
-                            <input type="text" name="nom"  class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg block"/>
+                            <input type="text" name="nom"  class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg block"/>
                             @error('nom')
                                 <div class="text-red-600">{{ $message }}</div>
                             @enderror
@@ -21,7 +21,7 @@
 
                         <div class="form-group" class="pt-3">
                             <label for="masseHorraire" class="block ">Masse Horrair</label>
-                            <input type="number" name="masseHorraire"  class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg"/>
+                            <input type="number" name="masseHorraire"  class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg"/>
 
                             @error('masseHorraire')
                                 <div class="text-red-600">{{ $message }}</div>
@@ -31,7 +31,7 @@
 
                         <div  class="pt-3">
                             <label for="infos" class="block">filiere:</label>
-                            <select name='idFilliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idFilliere' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($filiere as $filiere)
                                     <option value="{{$filiere->id}}">{{$filiere->nom}}</option>
                                 @endforeach
@@ -43,7 +43,7 @@
 
                         <div class="pt-3 mt-3">
                             <label for="infos" class="block">Prof:</label>
-                            <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idProf' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($prof as $prf)
                                     <option value="{{$prf->id}}">{{$prf->nom}}</option>
                                 @endforeach

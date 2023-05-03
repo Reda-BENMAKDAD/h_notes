@@ -13,14 +13,14 @@
                         @csrf
                         <div class="">
                                 <label for="valeur" class="block mb-3">valeur</label>
-                                <input type="number" step="0.25" name="valeur" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('valeur') is-invalid @enderror" />
+                                <input type="number" step="0.25" name="valeur" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('valeur') is-invalid @enderror" />
                                 @error('valeur')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="">
                             <label for="idstagiere" class="block mb-3">stagiaire</label>
-                            <select name='idstagiere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idstagiere' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($stagiaires as $stagiaire)
                                     <option value="{{$stagiaire->id}}">{{$stagiaire->nom . " " . $stagiaire->prenom}}</option>
                                 @endforeach
@@ -31,7 +31,7 @@
                         </div>
                         <div class="">
                             <label for="idexam" class="block mb-3">Exam: </label>
-                            <select name='idexam' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idexam' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($exams as $exam)
                                     <option value="{{$exam->id}}">{{$exam->libelle}}</option>
                                 @endforeach

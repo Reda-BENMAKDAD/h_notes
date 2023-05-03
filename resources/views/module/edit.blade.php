@@ -14,7 +14,7 @@
                         @method('put')
                         <div class="">
                                 <label for="nom " class="block mb-3">Nom</label>
-                                <input type="text" name="nom" value="{{$module->nom}}" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('nom') is-invalid @enderror" />
+                                <input type="text" name="nom" value="{{$module->nom}}" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('nom') is-invalid @enderror" />
                                 @error('nom')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -22,7 +22,7 @@
 
                         <div class="mt-5">
                                 <label for="masseHorraire" class="block mb-3">Masse Horraire</label>
-                                <input type="number" name="masseHorraire" value="{{$module->masseHorraire}}" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('masseHorraire') is-invalid @enderror" />
+                                <input type="number" name="masseHorraire" value="{{$module->masseHorraire}}" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('masseHorraire') is-invalid @enderror" />
                                 @error('masseHorraire')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -31,7 +31,7 @@
 
                         <div  class="pt-3">
                             <label for="infos" class="block">filiere:</label>
-                            <select name='idFilliere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idFilliere' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($filiere as $filiere)
                                     <option value="{{$filiere->id}}" @if ($filiere->id == $module->idFiliere ) selected @endif>{{$filiere->nom}}</option>
                                 @endforeach
@@ -43,7 +43,7 @@
 
                         <div class="pt-3 mt-3">
                             <label for="infos" class="block">Prof:</label>
-                            <select name='idProf' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
+                            <select name='idProf' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                                 @foreach($prof as $prf)
                                     <option value="{{$prf->id}}" @if ($filiere->id == $module->idFiliere ) selected @endif>{{$prf->nom}}</option>
                                 @endforeach
