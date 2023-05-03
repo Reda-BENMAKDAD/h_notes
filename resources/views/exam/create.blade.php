@@ -1,4 +1,11 @@
+@role('admin')
 <x-admin-layout>
+@endrole
+
+@role('prof')
+<x-app-layout>
+@endrole
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('créer Exam ') }}
@@ -71,5 +78,11 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
 
+@role('prof')
+</x-app-layout>
+@endrole
+
+@role('admin')
+</x-admin-layout>
+@endrole
