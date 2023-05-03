@@ -58,6 +58,8 @@
 
                                     </tr>
                                 @endforeach
+                                
+                               
 
                             </tbody>
                             @if (session('message'))
@@ -67,6 +69,15 @@
                     </div>
                 </div>
             </div>
+            
+<div class="py-8">
+      
+   {{ $stagieres->links() }}
+     
+</div>
+  
+            
+           
         </div>
     </div>
 </x-admin-layout>
