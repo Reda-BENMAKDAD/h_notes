@@ -20,11 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
-        'role',
-=======
-
->>>>>>> 1632df61e49748dbb902e20872c69b091c28ea64
     ];
 
     /**
@@ -46,6 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+<<<<<<< HEAD
     /**
      * Check if the user has a specific role.
      *
@@ -67,4 +63,7 @@ class User extends Authenticatable
     {
         return in_array($this->role, $roles);
     }
+=======
+    
+>>>>>>> 1a7bdad5321ecbac9d963c887ab097dde4b44e4c
 }
