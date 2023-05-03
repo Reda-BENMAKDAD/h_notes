@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
         ]);
 
 
-        $user->assignRole(['prof', 'admin' , 'stagiaire']);
+        $user->assignRole(['admin']);
     }
 
 }
