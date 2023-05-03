@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->foreignId('idgroupe');
             $table->foreign('idgroupe')->references('id')->on('groupes')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('pp_path')->nullable();
 
             $table->timestamps();
         });

@@ -36,6 +36,13 @@
                             <div class="text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="pt-3 mt-3">
+                        <label for="pp_path" class="block">Photo de profile:  </label>
+                        <input type="file" name="pp_path" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('prenom') is-invalid @enderror" />
+                        @error('idgroupe')
+                            <div class="text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
                         <div class="flex justify-center">
                             <button type="submit" class="btn btn-primary mt-6 text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg px-3 py-1 ">Valider</button>
                         </div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
+            $table->text('pp_path')->nullable();
             $table->timestamps();
         });
     }
