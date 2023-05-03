@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex justify-center ">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{Route('stagieres.store')}}" method="POST">
+                    <form action="{{Route('stagieres.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="">
                                 <label for="nom" class="block mb-1">Nom</label>
@@ -38,8 +38,8 @@
                     </div>
                     <div class="pt-3 mt-3">
                         <label for="pp_path" class="block">Photo de profile:  </label>
-                        <input type="file" name="pp_path" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('prenom') is-invalid @enderror" />
-                        @error('idgroupe')
+                        <input type="file" name="pp_path" class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg @error('pp_path') is-invalid @enderror" />
+                        @error('pp_path')
                             <div class="text-red-600">{{ $message }}</div>
                         @enderror
                     </div>

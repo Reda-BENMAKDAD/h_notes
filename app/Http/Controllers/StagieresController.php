@@ -10,8 +10,7 @@ use App\Models\Seance;
 
 use App\Models\Stagieres;
 use Illuminate\Support\Facades\DB;
-
-
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class StagieresController extends Controller
 {
@@ -41,13 +40,27 @@ class StagieresController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
-            'nom' => 'required',
-            'prenom' => 'required',
-            'idgroupe' => 'required|exists:groupes,id'
-        ]);
 
-        Stagieres::create($validatedData);
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'nom' => 'required',
+                'prenom' => 'required',
+                'idgroupe' => 'required|exists:groupes,id',
+                'pp_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+            ]
+        );
+        if ($validation->fails()){
+            return back()->withErrors($validation->errors())->withInput();
+        }
+        $image = $request->file('pp_path');
+        $imagePath = uniqid() . "" .  $image->getClientOriginalName();
+        $image->move(public_path('profile_pictures'), $imagePath);
+
+        $data = $request->all();
+        $data['pp_path'] = $imagePath;
+        Stagieres::create($data);
+
         return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
 
     }

@@ -12,8 +12,9 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-[60%]">
                         <div class="px-10 flex items-center w-full">
                             <div class="" >
-                                <div class="rounded-full w-28 h-28 bg-blue-600">
-                                    {{-- image place --}}
+                                
+                                <div class="rounded-full w-32 h-32 bg-blue-600 bg-no-repeat bg-cover" style="background-image: url('{{ asset('profile_pictures/'.$stagieres->pp_path) }}')">
+                                    
                                 </div>
                             </div>
                             <div class="p-3 bg-gray-300 dark:bg-gray-700 rounded-lg  w-full border-gray-600 ml-3">
