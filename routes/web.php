@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ProfController;
+use App\Http\Controllers\NotesController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SeanceController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\GroupesController;
-use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StagieresController;
-use App\Http\Controllers\NotesController;
 
 
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\NotesController;
 
 Route::get('/', function () {
     return view('welcome');
+
 });
 
 Route::get('/admin', function () {
@@ -32,6 +34,8 @@ Route::get('/admin', function () {
 })->middleware(['auth', 'verified', 'role:admin'])->name('admin');
 
 Route::get('/dashboard', function () {
+   //$prof = Auth::user();
+   //dd($prof->userable());
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
