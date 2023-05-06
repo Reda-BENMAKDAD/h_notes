@@ -22,7 +22,7 @@ class StagieresController extends Controller
     {
 
         //
-        $stagieres = Stagieres::all();
+        $stagieres = Stagieres::paginate(10);
         return view('stagieres.index' , ['stagieres'=>$stagieres]);
     }
 

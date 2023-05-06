@@ -1,0 +1,37 @@
+/* Style the container for the pagination links */
+ul.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Style the individual pagination links */
+  ul.pagination li a {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    margin-right: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #4a5568;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Style the active pagination link */
+  ul.pagination li.active a {
+    color: #fff;
+    background-color: #4299e1;
+    border-color: #4299e1;
+  }
+  
+  /* Style the disabled pagination links */
+  ul.pagination li.disabled a {
+    color: #a0aec0;
+    background-color: #fff;
+    border-color: #e2e8f0;
+    cursor: default;
+  }
+  

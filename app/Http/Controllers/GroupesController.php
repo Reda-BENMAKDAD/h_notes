@@ -50,7 +50,7 @@ class GroupesController extends Controller
     public function show(string $id)
     {
         //
-        $profs = Prof::join('modules', 'profs.id', '=', 'modules.idProfs')
+        $profs = Prof::join('modules', 'profs.id', '=', 'modules.idProf')
             ->join('seances', 'modules.id', '=', 'seances.idModule')
             ->where('seances.idGroupe', $id)
             ->select('profs.*')
