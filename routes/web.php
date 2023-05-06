@@ -33,22 +33,26 @@ Route::get('/admin', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','role:staigiaire|prof'])->name('dashboard');
+
+
+
+Route::post('/stagieres/{id}', [StagieresController::class, 'show'])->name('stagieres.details');
+
+Route::resource('exam', ExamController::class)->middleware(['auth', 'verified','role:admin|prof']);
+Route::resource('seance', SeanceController::class)->middleware(['auth', 'verified','role:admin|prof']);
+Route::resource('notes', NotesController::class)->middleware(['auth', 'verified','role:admin|prof']);
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('prof', ProfController::class)->middleware('role:admin');
-    Route::resource('seance', SeanceController::class)->middleware('role:admin');
-    Route::resource('exam', ExamController::class)->middleware('role:admin');
     Route::resource('filiers', FiliereController::class)->middleware('role:admin');
     Route::resource('groupes', GroupesController::class)->middleware('role:admin');
     Route::resource('module', ModuleController::class)->middleware('role:admin');
     Route::resource('stagieres', StagieresController::class);
-    Route::resource('notes', NotesController::class);
 });
 
 

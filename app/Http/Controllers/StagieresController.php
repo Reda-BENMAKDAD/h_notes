@@ -20,6 +20,7 @@ class StagieresController extends Controller
      */
     public function index()
     {
+
         //
         $stagieres = Stagieres::all();
         return view('stagieres.index' , ['stagieres'=>$stagieres]);

@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
         // Check the user's role and redirect accordingly
         if ($user->hasRole('admin')) {
             return redirect()->intended('/admin');
-        } else {
+        } else if($user->hasRole('stagiaire') || $user->hasRole('prof') ) {
             return redirect()->intended(RouteServiceProvider::HOME);
         }
 
