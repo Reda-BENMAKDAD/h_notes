@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Prof;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\Prof;
-use Illuminate\Http\Request;
 
 class ProfController extends Controller
 {
@@ -30,7 +33,20 @@ class ProfController extends Controller
      */
     public function store(Request $request)
     {
-        Prof::create($request->all());
+
+        $validatedData = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8'
+        ]);
+        $userData = ['name'=> $validatedData['nom'], 'email'=> $validatedData['email'], 'password' => Hash::make($validatedData['password'])];
+        $user = User::create($userData);
+        $user->assignRole('prof');
+        $profData = ['nom' => $validatedData['nom'], 'prenom' => $validatedData['prenom'], 'user_id' => $user->id];
+        Prof::create($profData);
+        
+
         return redirect()->route('prof.index');
     }
 

@@ -13,7 +13,7 @@ class Module extends Model
         'idFilliere',
         'nom',
         'masseHorraire',
-        'idProfs',
+        'idProf',
     ];
 
     function filliere() {
@@ -21,6 +21,6 @@ class Module extends Model
     }
 
     function profs() {
-        return $this->belongsTo(Prof::class, 'idProfs');
+        return $this->belongsTo(Prof::class, 'idProf');
     }
 }
