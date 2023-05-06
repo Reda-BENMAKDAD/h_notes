@@ -12,12 +12,9 @@ class Prof extends Model
         'id',
         'nom',
         'prenom',
-<<<<<<< HEAD
-        'pp_path'
-=======
+        'pp_path',
         'user_id'
->>>>>>> roles
-        
+
     ];
 
     public function modules(){

@@ -8,11 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Stagieres extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-    protected $fillable = ['nom', 'prenom','idgroupe', 'pp_path'];
-=======
-    protected $fillable = ['nom', 'prenom','idgroupe', 'user_id'];
->>>>>>> roles
+    protected $fillable = ['nom', 'prenom','idgroupe', 'user_id', 'pp_path'];
 
     public function groupes()
     {
