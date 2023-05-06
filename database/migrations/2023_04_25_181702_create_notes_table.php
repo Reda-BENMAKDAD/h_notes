@@ -16,7 +16,8 @@ return new class extends Migration
             $table->float('valeur');
             $table->foreignId('idexam');
             $table->foreignId('idstagiere');
-
+            $table->foreignId('idProf')->nullable();
+            $table->foreign('idProf')->references('id')->on('profs')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idexam')->references('id')->on('exams')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idstagiere')->references('id')->on('stagieres')->onDelete('cascade')->onUpdate('cascade');
 

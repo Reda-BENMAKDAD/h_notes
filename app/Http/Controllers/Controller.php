@@ -9,4 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    protected $useracount;
+
+    public function __construct()
+    {
+        $this->useracount = [];
+    }
 }

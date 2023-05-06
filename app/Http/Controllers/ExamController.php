@@ -14,9 +14,17 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::all();
-        $modules = Module::all();
-        return view('exam.index', compact('exams', 'modules'));
+        if(session()->has('useraccount')){
+            $exams = Exam::where('profId',session()->get('useraccount') )->get();
+            $modules = Module::all();
+            $role = 'prof';
+        }else{
+            $exams = Exam::all();
+            $modules = Module::all();
+            $role = 'admin';
+        }
+
+        return view('exam.index', compact('exams', 'modules', 'role'));
     }
 
     /**

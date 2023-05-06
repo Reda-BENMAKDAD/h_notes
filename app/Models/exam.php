@@ -12,7 +12,8 @@ class Exam extends Model
         'date',
         'type',
         'idModule',
-        'libelle'
+        'libelle',
+        'profId'
     ];
 
     public function module()
