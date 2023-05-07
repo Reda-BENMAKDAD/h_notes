@@ -84,7 +84,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         'role:admin'
     );
     Route::resource('stagieres', StagieresController::class);
-    Route::resource('notes', NotesController::class);
     Route::resource('absence', AbsenceController::class);
 
 

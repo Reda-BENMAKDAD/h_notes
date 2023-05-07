@@ -21,15 +21,9 @@
                         </div>
                         <div class="">
                             <label for="idstagiere" class="block mb-3">stagiaire</label>
-<<<<<<< HEAD
                             <select name='idstagiere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                                 @foreach($stagieres as $stagiaire)
                                     <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option> 
-=======
-                            <select name='idstagiere' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
-                                @foreach($stagiaires as $stagiaire)
-                                    <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option>
->>>>>>> roles
                                 @endforeach
                             </select>
                             @error('idstagiere')

@@ -17,8 +17,16 @@ class SeanceController extends Controller
      */
     public function index()
     {
-        $seances = Seance::all();
-        return view('seance.index', compact('seances'));
+        if(session()->has('useraccount')){
+            $seances = Seance::where('idProf',session()->get('useraccount') )->get();
+            
+            $role = 'prof';
+        }else{
+            $seances = Seance::all();
+            $role = 'admin';
+        }
+        
+        return view('seance.index', compact('seances' , 'role'));
     }
 
     /**
