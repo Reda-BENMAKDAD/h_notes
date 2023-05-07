@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Exam;
 use App\Models\Module;
+use App\Models\Prof_modules;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -12,11 +13,25 @@ class ExamController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    // this function to get the modules assigned to prof
+    public function GetprofModules($id){
+        $modules = Module::all();
+        $prof_modules = Prof_modules::all();
+        $profModules = [];
+        foreach($prof_modules as $prfMdl ){
+            if($prfMdl->idProf == $id){
+                $profModules[]= $prfMdl;
+            }
+        }
+        return $profModules;
+    }
+
     public function index()
     {
         if(session()->has('useraccount')){
             $exams = Exam::where('profId',session()->get('useraccount') )->get();
-            $modules = Module::all();
+            $modules = $this->GetprofModules(session()->get('useraccount'));
             $role = 'prof';
         }else{
             $exams = Exam::all();
@@ -32,8 +47,15 @@ class ExamController extends Controller
      */
     public function create()
     {
-        $modules = Module::all();
-        return view('exam.create', compact('modules'));
+        if(session()->has('useraccount')){
+            $modules = $this->GetprofModules(session()->get('useraccount'));
+            $role = "prof";
+
+        }else{
+            $modules = Module::all();
+            $role = "admin";
+        }
+        return view('exam.create', compact('modules', 'role'));
     }
 
     /**
@@ -50,8 +72,7 @@ class ExamController extends Controller
      */
     public function show(string $id)
     {
-        $exam = Exam::findOrFail($id);
-        return view('exam.show', compact('exam'));
+
     }
 
     /**
@@ -59,9 +80,19 @@ class ExamController extends Controller
      */
     public function edit(string $id)
     {
-        $exam = Exam::findOrFail($id);
-        $modules = Module::all();
-        return view('exam.edit', compact('exam', 'modules'));
+        if(session()->has('useraccount')){
+            $exam = Exam::where('profId',session()->get('useraccount') )
+            ->where('id' , $id)
+            ->firstOrFail();
+            $role = 'prof';
+            $modules = $this->GetprofModules(session()->get('useraccount'));
+        }else{
+            $exam = Exam::firstOrFail('id', $id);
+            $role = 'admin';
+            $modules = Module::all();
+
+        }
+        return view('exam.edit', compact('exam', 'modules', 'role'));
     }
 
     /**
