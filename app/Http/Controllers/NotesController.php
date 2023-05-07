@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Exam;
@@ -17,8 +18,32 @@ class NotesController extends Controller
     public function index()
     {
         //
-        $notes = Notes::all();
-        return view('notes.index' , ['notes'=>$notes]);
+        if(session()->has('useraccount')){
+            // $notes = DB::table('notes')
+            // ->join('exams', 'notes.idexam', '=', 'exams.id')
+            // ->where('exams.profId',session()->get('useraccount') )
+            // ->select('notes.*')
+            // ->get();
+            $notes=[];
+            $exams=Exam::all();
+            
+            $examnote=Notes::all();
+            foreach($examnote as $note){
+               foreach($exams as $exam){
+                if($note->idexam == $exam->id && $exam->profId == session()->get('useraccount')){
+                    $notes[]=$note;
+               }
+            }
+        }
+            
+            $role = 'prof';
+        }else{
+            $notes = Notes::all();
+            $role = 'admin';
+        }
+
+       
+        return view('notes.index' , ['notes'=>$notes , 'role'=>$role]);
     }
 
     /**
@@ -58,8 +83,7 @@ class NotesController extends Controller
     public function show(string $id)
     {
         //
-        $notes= Notes::findOrFail($id);
-        return view('notes.show' , ['notes'=>$notes]);
+       
     }
 
     /**
@@ -71,7 +95,7 @@ class NotesController extends Controller
         $exams = Exam::all();
         $stagieres = Stagieres::all();
         $note = Notes::find($id);
-        $exams = Exam::all();
+       
         return view('notes.edit', ['note'=>$note, 'stagieres'=>$stagieres, 'exams'=>$exams]);
     }
 
