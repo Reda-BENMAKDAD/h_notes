@@ -12,8 +12,9 @@ class Prof extends Model
         'id',
         'nom',
         'prenom',
-        'pp_path'
-        
+        'pp_path',
+        'user_id'
+
     ];
 
     public function modules(){
@@ -22,5 +23,10 @@ class Prof extends Model
     public function seances(){
         return $this->hasMany(Seance::class);
     }
+    public function user()
+    {
+        return $this->morphOne(User::class, 'userable');
+    }
+
     use HasFactory;
 }

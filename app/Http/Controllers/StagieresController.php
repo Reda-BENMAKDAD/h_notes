@@ -19,8 +19,9 @@ class StagieresController extends Controller
      */
     public function index()
     {
+
         //
-        $stagieres = Stagieres::all();
+        $stagieres = Stagieres::paginate(10);
         return view('stagieres.index' , ['stagieres'=>$stagieres]);
     }
 

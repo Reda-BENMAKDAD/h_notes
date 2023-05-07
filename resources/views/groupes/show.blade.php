@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('groupes Details') }}
@@ -8,7 +8,7 @@
 <div class="w-full flex justify-center">
     <div class="p-6 text-gray-900 dark:text-gray-100 w-[60%]">
         <div class="px-10 flex items-center w-full">
-            
+
             <div class="p-3 bg-gray-300 dark:bg-gray-700 rounded-lg  w-full border-gray-600 ml-3">
                 <table>
                     <tr class="">
@@ -19,7 +19,7 @@
                         <td class="py-2">filiere: </td>
                         <td class="pl-3">{{$groupes->filliere->nom}} </td>
                     </tr>
-                    
+
                 </table>
             </div>
         </div>
@@ -28,15 +28,15 @@
 
 <div class="px-10">
     <div class="flex justify-center my-4 space-x-4">
-        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'Stagieres']) }}" 
+        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'Stagieres']) }}"
             class="px-4 py-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 @if(request()->section == 'Stagieres') font-bold @endif">
             Stagieres
         </a>
-        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'modules']) }}" 
+        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'modules']) }}"
             class="px-4 py-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 @if(request()->section == 'modules') font-bold @endif">
             modules
         </a>
-        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'Profs']) }}" 
+        <a href="{{ route('groupes.show', [$groupes->id, 'section' => 'Profs']) }}"
             class="px-4 py-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 @if(request()->section == 'Profs') font-bold @endif">
             Profs
         </a>
@@ -173,4 +173,4 @@
     </div>
 </div>
 @endif
-</x-app-layout>
+</x-admin-layout>
