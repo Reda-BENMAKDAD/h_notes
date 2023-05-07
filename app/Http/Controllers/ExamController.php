@@ -20,8 +20,10 @@ class ExamController extends Controller
         $prof_modules = Prof_modules::all();
         $profModules = [];
         foreach($prof_modules as $prfMdl ){
-            if($prfMdl->idProf == $id){
-                $profModules[]= $prfMdl;
+            foreach($modules as $module){
+                if($prfMdl->idProf == $id && $module->id == $prfMdl->idModule){
+                    $profModules[]= $module;
+                }
             }
         }
         return $profModules;
