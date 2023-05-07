@@ -185,13 +185,13 @@
 
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('seance')">
+                        <x-nav-link :href="route('seance.index')" :active="request()->routeIs('seance.*')">
                             {{ __('Seance') }}
                         </x-nav-link>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('note')">
+                        <x-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.*')">
                             {{ __('Notes') }}
                         </x-nav-link>
                     </div>
