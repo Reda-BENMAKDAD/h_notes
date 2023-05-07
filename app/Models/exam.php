@@ -20,5 +20,6 @@ class Exam extends Model
     {
         return $this->belongsTo(Module::class, 'idModule');
     }
+    
     use HasFactory;
 }
