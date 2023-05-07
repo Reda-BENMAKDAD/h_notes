@@ -95,6 +95,7 @@
         </div>
     </div>
 </x-admin-layout>
+
 @elseif($role=='prof')
 
 <x-app-layout>
