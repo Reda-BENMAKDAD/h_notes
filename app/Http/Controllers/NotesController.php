@@ -13,7 +13,7 @@ use App\Models\GroupeProf;
 
 class NotesController extends Controller
 {
-    
+
 
     public function GetStagieres($id){
         $stagieres = Stagieres::all();
@@ -29,7 +29,7 @@ class NotesController extends Controller
                }
             }
         }
-        return $stagiaires ; 
+        return $stagiaires ;
     }
     public function getExam($id){
         $exams=Exam::all();
@@ -41,7 +41,7 @@ class NotesController extends Controller
         }
         return $exam;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -56,24 +56,24 @@ class NotesController extends Controller
             // ->get();
             $notes=[];
             $exams=Exam::all();
-            
+
             $examnote=Notes::all();
             foreach($examnote as $note){
                foreach($exams as $exam){
                 if($note->idexam == $exam->id && $exam->profId == session()->get('useraccount')){
                     $notes[]=$note;
-                
+
                }
             }
         }
-            
+
             $role = 'prof';
         }else{
             $notes = Notes::all();
             $role = 'admin';
         }
 
-       
+
         return view('notes.index' , ['notes'=>$notes , 'role'=>$role]);
     }
 
@@ -83,12 +83,18 @@ class NotesController extends Controller
     public function create()
     {
         //
-        $exams = $this->getExam(session()->get('useraccount'));
+        if(session()->has("useraccount")){
+            $exams = $this->getExam(session()->get('useraccount'));
 
-        $stagiaires = $this->GetStagieres(session()->get('useraccount'));
+            $stagiaires = $this->GetStagieres(session()->get('useraccount'));
 
-        return view('notes.create' , compact("stagiaires","exams"));
-    
+            return view('notes.create' , compact("stagiaires","exams"));
+        }else{
+            $exams=Exam::all();
+            $stagiaires = Stagieres::all();
+            return view('notes.create' , compact("stagiaires","exams"));
+        }
+
     }
 
     /**
@@ -107,7 +113,7 @@ class NotesController extends Controller
         Notes::create($validatedData);
 
         return redirect()->route('notes.index')->with('success', 'Note created successfully!');
-   
+
     }
 
     /**
@@ -116,7 +122,7 @@ class NotesController extends Controller
     public function show(string $id)
     {
         //
-       
+
     }
 
     /**
@@ -130,18 +136,18 @@ class NotesController extends Controller
             $role = 'prof';
             $stagieres = $this->GetStagieres(session()->get('useraccount'));
             $notes = Notes::all();
-            
-            
+
+
             foreach($notes as $Note){
                 foreach($exams as $exam){
                     if($Note->idexam == $exam->id && $Note->id == $id ){
                         $note = Notes::find($id);
-                        
+
 
                     }
                 }
             }
-            
+
 
 
         }else{
@@ -152,12 +158,12 @@ class NotesController extends Controller
             dd($note);
             }
         //
-        
+
         if(!$note){
             return abort(404);
         }
-        
-       
+
+
         return view('notes.edit', ['note'=>$note, 'stagieres'=>$stagieres, 'exams'=>$exams , 'role'=>$role]);
     }
 
@@ -179,7 +185,7 @@ class NotesController extends Controller
         $note->update($validatedData);
 
         return redirect()->route('notes.index')->with('success', 'Note updated successfully!');
-  
+
     }
 
     /**
@@ -193,6 +199,6 @@ class NotesController extends Controller
         $notes->delete();
 
         return redirect()->route('notes.index')->with('success', 'Note deleted successfully!');
-    
+
     }
 }

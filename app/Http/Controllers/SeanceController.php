@@ -16,17 +16,11 @@ use Illuminate\Http\Request;
 class SeanceController extends Controller
 {
     public function GetprofModules($id)
-    {        
+    {
         $modules = Module::all();
-        $groupes = Groupes::all();
         $prof_modules = Prof_modules::all();
-        $groupe_Prof = GroupeProf::all();
         $profModules = [];
-        $profGroupes = [];
-        
-        // Create a temporary array to keep track of added groups
-        $addedGroups = [];
-        
+
         foreach($prof_modules as $prfMdl) {
             foreach($modules as $module) {
                 if($prfMdl->idProf == $id && $module->id == $prfMdl->idModule) {
@@ -34,38 +28,41 @@ class SeanceController extends Controller
                 }
             }
         }
-        
+        return $profModules;
+    }
+
+
+    public function getGroupeProf ($id){
+        $addedGroups = [];
+        $groupe_Prof = GroupeProf::all();
+        $groupes = Groupes::all();
+        $profGroupes = [];
         foreach($groupe_Prof as $grbprof) {
             foreach($groupes as $groupe) {
                 if($grbprof->idProf == $id && $groupe->id == $grbprof->idGroupe) {
-                    // Add the group only if it hasn't been added before
-                    if (!in_array($groupe, $addedGroups)) {
-                        $profGroupes[] = $groupe;
-                        $addedGroups[] = $groupe;
-                    }
+                   $profGroupes[] = $groupe;
                 }
             }
         }
-        
-        return [$profModules, $profGroupes];   
+        return $profGroupes;
     }
-    
-    
+
+
     /**
      * Display a listing of the resource.
-     * 
+     *
      */
     public function index()
     {
         if(session()->has('useraccount')){
             $seances = Seance::where('idProf',session()->get('useraccount') )->get();
-            
+
             $role = 'prof';
         }else{
             $seances = Seance::all();
             $role = 'admin';
         }
-        
+
         return view('seance.index', compact('seances' , 'role'));
     }
 
@@ -74,10 +71,21 @@ class SeanceController extends Controller
      */
     public function create()
     {
-        $modules = Module::all();
-        $profs = Prof::all();
-        $groupes = Groupes::all();
-        return view('seance.create', compact('modules', 'profs', 'groupes'));
+        if(session()->has('useraccount')){
+            $profs = Prof::where('id' ,'=', session()->get('useraccount'))->get();
+            $modules = $this->GetprofModules(session()->get('useraccount'));
+            $groupes = Groupes::all();
+            $role = 'prof';
+        }else{
+            $modules = Module::all();
+            $profs = Prof::all();
+            $groupes = Groupes::all();
+            $role = "admin";
+        }
+
+
+
+        return view('seance.create', compact('modules', 'profs', 'groupes', 'role'));
     }
 
     /**
@@ -109,9 +117,9 @@ class SeanceController extends Controller
             ->firstOrFail();
             $role = 'prof';
             $profs = Prof::all();
-            $modules = $this->GetprofModules(session()->get('useraccount'))[0];
-            $groupes = $this->GetprofModules(session()->get('useraccount'))[1];
-            
+            $groupes = $this->getGroupeProf(session()->get('useraccount'));
+            $modules = $this->GetprofModules(session()->get('useraccount'));
+
         }else{
             $exam = Exam::firstOrFail('id', $id);
             $role = 'admin';
@@ -120,7 +128,7 @@ class SeanceController extends Controller
         }
 
 
-        
+
         return view('seance.edit', compact('seance', 'modules', 'profs', 'groupes' , 'role'));
     }
 

@@ -54,7 +54,7 @@
     </div>
 </x-admin-layout>
 
-@elseif($role=='prof')
+@else
 
 <x-app-layout>
     <x-slot name="header">

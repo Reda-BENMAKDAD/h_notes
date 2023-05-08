@@ -24,7 +24,7 @@
                             <label for="idstagiere" class="block mb-3">stagiaire</label>
                             <select name='idstagiere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                                 @foreach($stagieres as $stagiaire)
-                                    <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option> 
+                                    <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option>
                                 @endforeach
                             </select>
                             @error('idstagiere')
@@ -58,7 +58,7 @@
 </x-admin-layout>
 
 
-@elseif($role=='prof')
+@else
 
 <x-app-layout>
     <x-slot name="header">
@@ -85,7 +85,7 @@
                             <label for="idstagiere" class="block mb-3">stagiaire</label>
                             <select name='idstagiere' class="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded-lg">
                                 @foreach($stagieres as $stagiaire)
-                                    <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option> 
+                                    <option value="{{$stagiaire->id}}"   {{ $note->stagieres->id == $stagiaire->id ? "selected" : "" }} >{{$stagiaire->nom . " " . $stagiaire->prenom}}</option>
                                 @endforeach
                             </select>
                             @error('idstagiere')
