@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Groupes;
 use App\Models\Notes;
 use App\Models\Seance;
-
+use App\Models\User;
 use App\Models\Stagieres;
 use Illuminate\Support\Facades\DB;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
@@ -48,7 +48,9 @@ class StagieresController extends Controller
                 'nom' => 'required',
                 'prenom' => 'required',
                 'idgroupe' => 'required|exists:groupes,id',
-                'pp_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+                'pp_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:8'
             ]
         );
         if ($validation->fails()){
@@ -60,6 +62,11 @@ class StagieresController extends Controller
 
         $data = $request->all();
         $data['pp_path'] = $imagePath;
+
+
+        $userData = ['name'=> $validatedData['nom'], 'email'=> $validatedData['email'], 'password' => Hash::make($validatedData['password'])];
+        $user = User::create($userData);
+        $user->assignRole('stagiaire');
         Stagieres::create($data);
 
         return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');

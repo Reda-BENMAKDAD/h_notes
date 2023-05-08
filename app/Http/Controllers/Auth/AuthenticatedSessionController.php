@@ -40,13 +40,17 @@ class AuthenticatedSessionController extends Controller
         } else if($user->hasRole('stagiaire')  ) {
             $useracount = Stagieres::where('user_id', $user->id)->get();
             session()->put('useraccount', $useracount[0]->id);
-            return redirect()->intended(RouteServiceProvider::HOME);
+            if(session()->get('useraccount')){
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
         }else if($user->hasRole('prof')){
             $useracount = Prof::where('user_id', $user->id)->get();
             // dd($useracount[0]->user_id, $user->id );
             // store the prof id in session
             session()->put('useraccount', $useracount[0]->id);
-            return redirect()->intended(RouteServiceProvider::HOME);
+            if(session()->get('useraccount')){
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
         }
 
     }

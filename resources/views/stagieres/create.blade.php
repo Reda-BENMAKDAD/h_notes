@@ -24,7 +24,28 @@
                             @error('prenom')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                    </div>
+                        </div>
+                        <div class="mt-5">
+                            <label for="email" class="block mb-1">Email</label>
+                            <input type="email" name="email" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('email') is-invalid @enderror" />
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mt-5">
+                            <label for="password " class="block mb-1">Password</label>
+                            <input type="password" name="password" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('password') is-invalid @enderror" />
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mt-5">
+                            <label for="confirmPassword " class="block mb-1">Confirm Password</label>
+                            <input type="password" name="confirmPassword" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('confirmPassword') is-invalid @enderror" />
+                            @error('confirmPassword')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     <div class="pt-3 mt-3">
                         <label for="infos" class="block">Groupe: </label>
                         <select name='idgroupe' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
