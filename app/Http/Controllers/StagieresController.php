@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Stagieres;
 use Illuminate\Support\Facades\DB;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
+use Illuminate\Support\Facades\Hash;
 
 class StagieresController extends Controller
 {
@@ -64,10 +65,11 @@ class StagieresController extends Controller
         $data['pp_path'] = $imagePath;
 
 
-        $userData = ['name'=> $validatedData['nom'], 'email'=> $validatedData['email'], 'password' => Hash::make($validatedData['password'])];
+        $userData = ['name'=> $data['nom'], 'email'=> $data['email'], 'password' => Hash::make($data['password'])];
         $user = User::create($userData);
         $user->assignRole('stagiaire');
-        Stagieres::create($data);
+        $stagiaireData = ['nom'=> $data['nom'], 'prenom' => $data['prenom'], 'idgroupe'=>$data['idgroupe'], 'pp_path'=> $data['pp_path'], 'user_id'=> $user->id];
+        Stagieres::create($stagiaireData);
 
         return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
 
