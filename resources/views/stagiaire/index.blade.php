@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Module') }}
+                {{ __('Stagiaiares') }}
             </h2>
             <div class=" text-right">
-                <a href="stagieres/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer stagiaire</a>
+                <a href="stagiaire/create" class="px-3 py-2 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg text-white font-medium "> + Créer stagiaire</a>
             </div>
         </div>
     </x-slot>
@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($stagieres as $stagiere)
+                                @foreach($stagiaire as $stagiere)
                                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-800">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -46,20 +46,20 @@
                                                 {{ $stagiere->groupes->libelle }}
                                             </td>
                                             <td>
-                                                <form action="{{ Route('stagieres.destroy', $stagiere->id) }}" method="POST">
+                                                <form action="{{ Route('stagiaire.destroy', $stagiere->id) }}" method="POST">
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{ Route('stagieres.edit', $stagiere->id) }}"
-                                                        class="text-blue-600">Modifier</a>
-                                                    <a href="{{Route('stagieres.show', $stagiere->id)}}" class="text-green-600 ml-4">Details</a>
+                                                    <a href="{{ Route('stagiaire.edit', $stagiere->id) }}"
+                                                        class="text-blue-600">Modifier s</a>
+                                                    <a href="{{Route('stagiaire.details', $stagiere->id)}}" class="text-green-600 ml-4">Details</a>
                                                     <input type="submit" value="Supprimer" class="text-red-600 ml-4" />
                                                 </form>
                                             </td>
 
                                     </tr>
                                 @endforeach
-                                
-                               
+
+
 
                             </tbody>
                             @if (session('message'))
@@ -69,15 +69,15 @@
                     </div>
                 </div>
             </div>
-            
+
 <div class="py-8">
-      
-   {{ $stagieres->links() }}
-     
+
+   {{ $stagiaire->links() }}
+
 </div>
-  
-            
-           
+
+
+
         </div>
     </div>
 </x-admin-layout>

@@ -29,6 +29,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+
+
+
+
+
 Route::get('/admin', function () {
     return view('admin');
 })
@@ -36,16 +44,24 @@ Route::get('/admin', function () {
     ->name('admin');
 
 Route::get('/dashboard', function () {
-    //$prof = Auth::user();
-    //dd($prof->userable());
     return view('dashboard');
 })
-    ->middleware(['auth', 'verified', 'role:staigiaire|prof'])
+    ->middleware(['auth', 'verified', 'role:stagiaire|prof'])
     ->name('dashboard');
 
-Route::post('/stagieres/{id}', [StagieresController::class, 'show'])->name(
-    'stagieres.details'
+Route::middleware(['auth'])->group(function (){
+        Route::get('stagiaire/{id}',[ StagieresController::class, 'edit'])->name('stagiaire.edit');
+        Route::get('stagiaire/{id}/edit', [StagieresController::class, 'show'])->middleware(['auth', 'verified', 'role:stagiaire|admin'])
+        ->name(
+            'stagiaire.details'
+        );
+        Route::get('stagiaire', [StagieresController::class , 'index'])->name('stagiaire.index');
+        Route::post('stagiaire',[StagieresController::class, 'create'])->name('stagiaire.create');
+        Route::delete('stagiaire/{id}',[ StagieresController::class, 'destroy'])->name('stagiaire.destroy');
+        Route::put('stagiaire/{id}',[ StagieresController::class, 'update'])->name('stagiaire.update');
+    }
 );
+
 
 Route::resource('exam', ExamController::class)->middleware([
     'auth',
@@ -74,17 +90,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         'profile.destroy'
     );
     Route::resource('prof', ProfController::class)->middleware('role:admin');
-    Route::resource('filiers', FiliereController::class)->middleware(
-        'role:admin'
-    );
-    Route::resource('groupes', GroupesController::class)->middleware(
-        'role:admin'
-    );
-    Route::resource('module', ModuleController::class)->middleware(
-        'role:admin'
-    );
-    Route::resource('stagieres', StagieresController::class);
+    Route::resource('filiers', FiliereController::class);
+    Route::resource('groupes', GroupesController::class);
+    Route::resource('module', ModuleController::class);
     Route::resource('absence', AbsenceController::class);
+
+
+
 
 
 });

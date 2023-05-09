@@ -9,19 +9,19 @@
         <div class="">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('stagieres.update',$stagieres->id) }}" method="POST">
+                    <form action="{{ route('stagiaire.update',$stagiaire->id) }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="">
                                 <label for="nom" class="block mb-1">Nom</label>
-                                <input type="text" name="nom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('nom') is-invalid @enderror" value="{{ $stagieres->nom }}"/>
+                                <input type="text" name="nom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('nom') is-invalid @enderror" value="{{ $stagiaire->nom }}"/>
                                 @error('nom')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="mt-5">
                             <label for="prenom " class="block mb-1">Prenom</label>
-                            <input type="text" name="prenom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('prenom') is-invalid @enderror" value="{{ $stagieres->prenom }}"/>
+                            <input type="text" name="prenom" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg @error('prenom') is-invalid @enderror" value="{{ $stagiaire->prenom }}"/>
                             @error('prenom')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -30,7 +30,7 @@
                         <label for="infos" class="block">Groupe: </label>
                         <select name='idgroupe' class="px-3 py-2 bg-gray-200 dark:bg-gray-600 w-[50%] rounded-lg">
                             @foreach($groupes as $groupe)
-                                <option value="{{$groupe->id}}" {{ $stagieres->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->libelle}}</option>
+                                <option value="{{$groupe->id}}" {{ $stagiaire->idgroupe == $groupe->idgroupe ? 'selected' : '' }}>{{$groupe->libelle}}</option>
                             @endforeach
                         </select>
                         @error('idgroupe')

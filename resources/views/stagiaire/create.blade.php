@@ -9,7 +9,7 @@
         <div class="">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{Route('stagieres.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{Route('stagiaire.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="">
                                 <label for="nom" class="block mb-1">Nom</label>

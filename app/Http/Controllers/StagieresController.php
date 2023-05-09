@@ -23,7 +23,7 @@ class StagieresController extends Controller
 
         //
         $stagieres = Stagieres::paginate(10);
-        return view('stagieres.index' , ['stagieres'=>$stagieres]);
+        return view('stagiaire.index' , ['stagiaire'=>$stagieres]);
     }
 
     /**
@@ -33,7 +33,7 @@ class StagieresController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('stagieres.create' , compact('groupes'));
+        return view('stagiaire.create' , compact('groupes'));
     }
 
     /**
@@ -71,7 +71,7 @@ class StagieresController extends Controller
         $stagiaireData = ['nom'=> $data['nom'], 'prenom' => $data['prenom'], 'idgroupe'=>$data['idgroupe'], 'pp_path'=> $data['pp_path'], 'user_id'=> $user->id];
         Stagieres::create($stagiaireData);
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere created successfully!');
 
     }
 
@@ -81,21 +81,40 @@ class StagieresController extends Controller
     public function show(string $id)
     {
         //
-        $notes = Notes::where('idstagiere', $id)->get();
-        $stagieres= Stagieres::findOrFail($id);
-        $modules = DB::table('modules')
-        ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
-        ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
-        ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
-        ->where('stagieres.id', $id)
-        ->select('modules.*')
-        ->get();
-        $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
-                     ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
-                     ->where('stagieres.id', '=', $id)
-                     ->get(['seances.*']);
-                     $section = '';
-        return view('stagieres.show' , ['stagieres'=>$stagieres, 'modules'=>$modules , 'notes'=>$notes ,'seances'=>$seances , 'section'=>$section]);
+        if(session()->has('useraccount')){
+            $notes = Notes::where('idstagiere', session()->get('useraccount'))->get();
+            $stagieres= Stagieres::findOrFail(session()->get('useraccount'));
+            $modules = DB::table('modules')
+            ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
+            ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
+            ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+            ->where('stagieres.id', session()->get('useraccount'))
+            ->select('modules.*')
+            ->get();
+            $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
+                         ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+                         ->where('stagieres.id', '=', session()->get('useraccount'))
+                         ->get(['seances.*']);
+                         $section = '';
+            $role= 'stagiaire';
+        }else{
+            $notes = Notes::where('idstagiere', $id)->get();
+            $stagieres= Stagieres::findOrFail($id);
+            $modules = DB::table('modules')
+            ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
+            ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
+            ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+            ->where('stagieres.id', $id)
+            ->select('modules.*')
+            ->get();
+            $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
+                        ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+                        ->where('stagieres.id', '=', $id)
+                        ->get(['seances.*']);
+                        $section = '';
+            $role='admin';
+        }
+        return view('stagiaire.show' , ['stagiaire'=>$stagieres, 'modules'=>$modules , 'notes'=>$notes ,'seances'=>$seances , 'section'=>$section, 'role' =>$role]);
 
     }
 
@@ -107,7 +126,7 @@ class StagieresController extends Controller
         //
         $groupes = Groupes::all();
         $stagieres= Stagieres::findOrFail($id);
-        return view('stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
+        return view('stagiaire.edit' , ['stagiaire'=>$stagieres , 'groupes'=>$groupes]);
     }
 
     /**
@@ -126,7 +145,7 @@ class StagieresController extends Controller
 
         $stagiere->update($validatedData);
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere updated successfully!');
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere updated successfully!');
 
     }
 
@@ -140,7 +159,7 @@ class StagieresController extends Controller
 
         $stagiere->delete();
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere deleted successfully!');
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere deleted successfully!');
 
     }
 }

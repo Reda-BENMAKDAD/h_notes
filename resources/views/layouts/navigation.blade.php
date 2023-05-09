@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="mt-5 flex">
-                        <x-nav-link :href="route('stagieres.index')" :active="request()->routeIs('stagieres.*')">
+                        <x-nav-link :href="route('stagiaire.index')" :active="request()->routeIs('stagiaire.*')">
                             {{ __('Stagieres') }}
                         </x-nav-link>
                     </div>
@@ -307,8 +307,8 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('stagieres.details')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-nav-link :href="route('stagiaire.details', session()->get('useraccount'))" :active="request()->routeIs('stagiaire.*')">
+                            {{ __('userDetails') }}
                         </x-nav-link>
                     </div>
 
