@@ -63,21 +63,12 @@ Route::middleware(['auth'])->group(function (){
 );
 
 
-Route::resource('exam', ExamController::class)->middleware([
-    'auth',
-    'verified',
-    'role:admin|prof',
-]);
-Route::resource('seance', SeanceController::class)->middleware([
-    'auth',
-    'verified',
-    'role:admin|prof',
-]);
-Route::resource('notes', NotesController::class)->middleware([
-    'auth',
-    'verified',
-    'role:admin|prof',
-]);
+Route::middleware(['auth, verified,role:admin|prof'])->group(function(){
+    Route::resource('exam', ExamController::class);
+    Route::resource('seance', SeanceController::class);
+    Route::resource('notes', NotesController::class);
+});
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name(
@@ -94,11 +85,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('groupes', GroupesController::class);
     Route::resource('module', ModuleController::class);
     Route::resource('absence', AbsenceController::class);
-
-
-
-
-
 });
 
 require __DIR__ . '/auth.php';
