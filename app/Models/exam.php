@@ -12,12 +12,14 @@ class Exam extends Model
         'date',
         'type',
         'idModule',
-        'libelle'
+        'libelle',
+        'profId'
     ];
 
     public function module()
     {
         return $this->belongsTo(Module::class, 'idModule');
     }
+    
     use HasFactory;
 }

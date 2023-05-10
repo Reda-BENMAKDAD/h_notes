@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Groupes;
 use App\Models\Notes;
 use App\Models\Seance;
-
+use App\Models\User;
 use App\Models\Stagieres;
 use Illuminate\Support\Facades\DB;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
+use Illuminate\Support\Facades\Hash;
 
 class StagieresController extends Controller
 {
@@ -22,7 +23,7 @@ class StagieresController extends Controller
 
         //
         $stagieres = Stagieres::paginate(10);
-        return view('stagieres.index' , ['stagieres'=>$stagieres]);
+        return view('stagiaire.index' , ['stagiaire'=>$stagieres]);
     }
 
     /**
@@ -32,7 +33,7 @@ class StagieresController extends Controller
     {
         //
         $groupes = Groupes::all();
-        return view('stagieres.create' , compact('groupes'));
+        return view('stagiaire.create' , compact('groupes'));
     }
 
     /**
@@ -48,7 +49,9 @@ class StagieresController extends Controller
                 'nom' => 'required',
                 'prenom' => 'required',
                 'idgroupe' => 'required|exists:groupes,id',
-                'pp_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+                'pp_path' => 'image|mimes:jpeg,png,jpg,gif,svg',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:8'
             ]
         );
         if ($validation->fails()){
@@ -60,9 +63,15 @@ class StagieresController extends Controller
 
         $data = $request->all();
         $data['pp_path'] = $imagePath;
-        Stagieres::create($data);
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere created successfully!');
+
+        $userData = ['name'=> $data['nom'], 'email'=> $data['email'], 'password' => Hash::make($data['password'])];
+        $user = User::create($userData);
+        $user->assignRole('stagiaire');
+        $stagiaireData = ['nom'=> $data['nom'], 'prenom' => $data['prenom'], 'idgroupe'=>$data['idgroupe'], 'pp_path'=> $data['pp_path'], 'user_id'=> $user->id];
+        Stagieres::create($stagiaireData);
+
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere created successfully!');
 
     }
 
@@ -72,21 +81,40 @@ class StagieresController extends Controller
     public function show(string $id)
     {
         //
-        $notes = Notes::where('idstagiere', $id)->get();
-        $stagieres= Stagieres::findOrFail($id);
-        $modules = DB::table('modules')
-        ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
-        ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
-        ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
-        ->where('stagieres.id', $id)
-        ->select('modules.*')
-        ->get();
-        $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
-                     ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
-                     ->where('stagieres.id', '=', $id)
-                     ->get(['seances.*']);
-                     $section = '';
-        return view('stagieres.show' , ['stagieres'=>$stagieres, 'modules'=>$modules , 'notes'=>$notes ,'seances'=>$seances , 'section'=>$section]);
+        if(session()->has('useraccount')){
+            $notes = Notes::where('idstagiere', session()->get('useraccount'))->get();
+            $stagieres= Stagieres::findOrFail(session()->get('useraccount'));
+            $modules = DB::table('modules')
+            ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
+            ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
+            ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+            ->where('stagieres.id', session()->get('useraccount'))
+            ->select('modules.*')
+            ->get();
+            $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
+                         ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+                         ->where('stagieres.id', '=', session()->get('useraccount'))
+                         ->get(['seances.*']);
+                         $section = '';
+            $role= 'stagiaire';
+        }else{
+            $notes = Notes::where('idstagiere', $id)->get();
+            $stagieres= Stagieres::findOrFail($id);
+            $modules = DB::table('modules')
+            ->join('fillieres', 'modules.idFilliere', '=', 'fillieres.id')
+            ->join('groupes' , 'groupes.idFilliere' , '=' , 'fillieres.id')
+            ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+            ->where('stagieres.id', $id)
+            ->select('modules.*')
+            ->get();
+            $seances = Seance::join('groupes', 'groupes.id', '=', 'seances.idGroupe')
+                        ->join('stagieres', 'stagieres.idgroupe', '=', 'groupes.id')
+                        ->where('stagieres.id', '=', $id)
+                        ->get(['seances.*']);
+                        $section = '';
+            $role='admin';
+        }
+        return view('stagiaire.show' , ['stagiaire'=>$stagieres, 'modules'=>$modules , 'notes'=>$notes ,'seances'=>$seances , 'section'=>$section, 'role' =>$role]);
 
     }
 
@@ -98,7 +126,7 @@ class StagieresController extends Controller
         //
         $groupes = Groupes::all();
         $stagieres= Stagieres::findOrFail($id);
-        return view('stagieres.edit' , ['stagieres'=>$stagieres , 'groupes'=>$groupes]);
+        return view('stagiaire.edit' , ['stagiaire'=>$stagieres , 'groupes'=>$groupes]);
     }
 
     /**
@@ -117,7 +145,7 @@ class StagieresController extends Controller
 
         $stagiere->update($validatedData);
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere updated successfully!');
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere updated successfully!');
 
     }
 
@@ -131,7 +159,7 @@ class StagieresController extends Controller
 
         $stagiere->delete();
 
-        return redirect()->route('stagieres.index')->with('success', 'Stagiere deleted successfully!');
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiere deleted successfully!');
 
     }
 }

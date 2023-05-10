@@ -2,23 +2,79 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Exam;
 use App\Models\Stagieres;
 use App\Models\Notes;
-
+use App\Models\Groupes;
+use App\Models\GroupeProf;
 
 class NotesController extends Controller
 {
+
+
+    public function GetStagieres($id){
+        $stagieres = Stagieres::all();
+        $groupes=Groupes::all();
+        $group_prof=GroupeProf::all();
+        $stagiaires=[];
+        foreach($group_prof as $grp){
+            if($grp->idProf == $id){
+               foreach($stagieres as $str){
+                if($grp->idGroupe == $str->idgroupe){
+                    $stagiaires[]=$str;
+                }
+               }
+            }
+        }
+        return $stagiaires ;
+    }
+    public function getExam($id){
+        $exams=Exam::all();
+        $exam=[];
+        foreach($exams as $exm){
+            if($exm->profId == $id){
+                $exam[]=$exm;
+            }
+        }
+        return $exam;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        $notes = Notes::all();
-        return view('notes.index' , ['notes'=>$notes]);
+        if(session()->has('useraccount')){
+            // $notes = DB::table('notes')
+            // ->join('exams', 'notes.idexam', '=', 'exams.id')
+            // ->where('exams.profId',session()->get('useraccount') )
+            // ->select('notes.*')
+            // ->get();
+            $notes=[];
+            $exams=Exam::all();
+
+            $examnote=Notes::all();
+            foreach($examnote as $note){
+               foreach($exams as $exam){
+                if($note->idexam == $exam->id && $exam->profId == session()->get('useraccount')){
+                    $notes[]=$note;
+
+               }
+            }
+        }
+
+            $role = 'prof';
+        }else{
+            $notes = Notes::all();
+            $role = 'admin';
+        }
+
+
+        return view('notes.index' , ['notes'=>$notes , 'role'=>$role]);
     }
 
     /**
@@ -27,10 +83,18 @@ class NotesController extends Controller
     public function create()
     {
         //
-        $exams = Exam::all();
-        $stagiaires = Stagieres::all();
-        return view('notes.create' , compact("stagiaires","exams"));
-    
+        if(session()->has("useraccount")){
+            $exams = $this->getExam(session()->get('useraccount'));
+
+            $stagiaires = $this->GetStagieres(session()->get('useraccount'));
+
+            return view('notes.create' , compact("stagiaires","exams"));
+        }else{
+            $exams=Exam::all();
+            $stagiaires = Stagieres::all();
+            return view('notes.create' , compact("stagiaires","exams"));
+        }
+
     }
 
     /**
@@ -49,7 +113,7 @@ class NotesController extends Controller
         Notes::create($validatedData);
 
         return redirect()->route('notes.index')->with('success', 'Note created successfully!');
-   
+
     }
 
     /**
@@ -58,8 +122,7 @@ class NotesController extends Controller
     public function show(string $id)
     {
         //
-        $notes= Notes::findOrFail($id);
-        return view('notes.show' , ['notes'=>$notes]);
+
     }
 
     /**
@@ -67,12 +130,41 @@ class NotesController extends Controller
      */
     public function edit(string $id)
     {
+        $note=null;
+        if(session()->has('useraccount')){
+            $exams = $this->getExam(session()->get('useraccount'));
+            $role = 'prof';
+            $stagieres = $this->GetStagieres(session()->get('useraccount'));
+            $notes = Notes::all();
+
+
+            foreach($notes as $Note){
+                foreach($exams as $exam){
+                    if($Note->idexam == $exam->id && $Note->id == $id ){
+                        $note = Notes::find($id);
+
+
+                    }
+                }
+            }
+
+
+
+        }else{
+            $role = 'admin';
+            $exams = Exam::all();
+            $stagieres = Stagieres::all();
+            $note = Notes::find($id);
+            dd($note);
+            }
         //
-        $exams = Exam::all();
-        $stagieres = Stagieres::all();
-        $note = Notes::find($id);
-        $exams = Exam::all();
-        return view('notes.edit', ['note'=>$note, 'stagieres'=>$stagieres, 'exams'=>$exams]);
+
+        if(!$note){
+            return abort(404);
+        }
+
+
+        return view('notes.edit', ['note'=>$note, 'stagieres'=>$stagieres, 'exams'=>$exams , 'role'=>$role]);
     }
 
     /**
@@ -93,7 +185,7 @@ class NotesController extends Controller
         $note->update($validatedData);
 
         return redirect()->route('notes.index')->with('success', 'Note updated successfully!');
-  
+
     }
 
     /**
@@ -107,6 +199,6 @@ class NotesController extends Controller
         $notes->delete();
 
         return redirect()->route('notes.index')->with('success', 'Note deleted successfully!');
-    
+
     }
 }

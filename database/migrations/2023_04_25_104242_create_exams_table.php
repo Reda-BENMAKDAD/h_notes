@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId("idModule");
             $table->foreign("idModule")->references("id")->on("modules")->onDelete("cascade")->onUpdate("cascade");
             $table->string("libelle");
+            $table->foreignId('profId')->nullable();
+            $table->foreign('profId')->references("id")->on('profs')->onDelete("cascade")->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date("date");
             $table->string("nom");
             $table->string("type");
-            $table->foreignId("idProf");
+            $table->foreignId("idProf")->nullable();
             $table->foreign("idProf")->references("id")->on("profs")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("idModule");
             $table->foreign("idModule")->references("id")->on("modules")->onDelete("cascade")->onUpdate("cascade");

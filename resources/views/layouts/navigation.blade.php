@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="mt-5 flex">
-                        <x-nav-link :href="route('stagieres.index')" :active="request()->routeIs('stagieres.*')">
+                        <x-nav-link :href="route('stagiaire.index')" :active="request()->routeIs('stagiaire.*')">
                             {{ __('Stagieres') }}
                         </x-nav-link>
                     </div>
@@ -178,20 +178,20 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('exames')">
+                        <x-nav-link :href="route('exam.index')" :active="request()->routeIs('exam.*')">
                             {{ __('Exames') }}
                         </x-nav-link>
                     </div>
 
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('seance')">
+                        <x-nav-link :href="route('seance.index')" :active="request()->routeIs('seance.*')">
                             {{ __('Seance') }}
                         </x-nav-link>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('note')">
+                        <x-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.*')">
                             {{ __('Notes') }}
                         </x-nav-link>
                     </div>
@@ -307,8 +307,8 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('stagieres.details')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-nav-link :href="route('stagiaire.details', session()->get('useraccount'))" :active="request()->routeIs('stagiaire.*')">
+                            {{ __('userDetails') }}
                         </x-nav-link>
                     </div>
 
