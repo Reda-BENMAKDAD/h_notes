@@ -50,16 +50,17 @@ Route::get('/dashboard', function () {
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function (){
-        Route::get('stagiaire/{id}',[ StagieresController::class, 'edit'])->name('stagiaire.edit');
-        Route::get('stagiaire/{id}/edit', [StagieresController::class, 'show'])->middleware(['auth', 'verified', 'role:stagiaire|admin'])
-        ->name(
-            'stagiaire.details'
-        );
-        Route::get('stagiaire', [StagieresController::class , 'index'])->name('stagiaire.index');
-        Route::post('stagiaire',[StagieresController::class, 'create'])->name('stagiaire.create');
-        Route::delete('stagiaire/{id}',[ StagieresController::class, 'destroy'])->name('stagiaire.destroy');
-        Route::put('stagiaire/{id}',[ StagieresController::class, 'update'])->name('stagiaire.update');
-    }
+    Route::get('stagiaire/create',[StagieresController::class, 'create'])->middleware(['role:admin'])->name('stagiaire.create');
+    Route::get('stagiaire/{id}',[ StagieresController::class, 'edit'])->middleware(['role:admin'])->name('stagiaire.edit');
+    Route::get('stagiaire/{id}/edit', [StagieresController::class, 'show'])->middleware(['role:stagiaire|admin'])
+    ->name(
+        'stagiaire.details'
+    );
+    Route::get('stagiaire', [StagieresController::class , 'index'])->middleware(['role:admin'])->name('stagiaire.index');
+    Route::post('stagiaire',[StagieresController::class, 'store'])->middleware(['role:admin'])->name('stagiaire.store');
+    Route::delete('stagiaire/{id}',[ StagieresController::class, 'destroy'])->middleware(['role:admin'])->name('stagiaire.destroy');
+    Route::put('stagiaire/{id}',[ StagieresController::class, 'update'])->middleware(['role:admin'])->name('stagiaire.update');
+}
 );
 
 
