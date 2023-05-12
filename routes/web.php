@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ProfController;
 use App\Http\Controllers\NotesController;
@@ -25,9 +26,8 @@ use App\Http\Controllers\AbsenceController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'index']);
 
 
 
