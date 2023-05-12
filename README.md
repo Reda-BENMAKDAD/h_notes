@@ -17,7 +17,7 @@ To install the H-Notes application, follow these steps:
 1. Clone the repository:
 
 ```
-git clone https://github.com/your-username/h-notes.git
+git clone https://github.com/reda-benmakdad/h-notes.git
 ```
 
 2. Install the dependencies:
