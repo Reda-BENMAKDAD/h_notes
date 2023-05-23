@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function (){
 );
 
 
-Route::middleware(['auth, verified,role:admin|prof'])->group(function(){
+Route::middleware(['auth', 'verified', 'role:admin|prof'])->group(function(){
     Route::resource('exam', ExamController::class);
     Route::resource('seance', SeanceController::class);
     Route::resource('notes', NotesController::class);

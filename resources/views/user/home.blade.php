@@ -57,7 +57,7 @@
               <li class="scroll-to-section"><a href="#portfolio">About Us</a></li>
               <li class="scroll-to-section"><a href="#blog">Blog</a></li> 
               <li class="scroll-to-section"><a href="#contact">Message Us</a></li> 
-              <li class="scroll-to-section"><div class="main-red-button"><a href="/register"> My Account</a></div></li> 
+              <li class="scroll-to-section"><div class="main-red-button"><a href="/login"> My Account</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>

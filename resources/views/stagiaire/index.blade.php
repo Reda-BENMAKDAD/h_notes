@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                                 @foreach($stagiaire as $stagiere)
-                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-800">
+                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $stagiere->nom }}
